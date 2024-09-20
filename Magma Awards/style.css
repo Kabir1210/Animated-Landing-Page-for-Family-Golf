@@ -12,7 +12,7 @@ html,body{
 #main{
     position: relative;
     overflow: hidden;
-    background-color: #0b48ed;
+    background-color: #032997;
 }
 @font-face {
     font-family: a;
@@ -29,7 +29,7 @@ html,body{
 #page1{
     height: 100vh;
     width: 100vw;
-    background-color: red;
+    /* background-color: red; */
     position: relative;
 }
 
@@ -114,7 +114,7 @@ html,body{
 #page2{
     height: 100vh;
     width: 100vw;
-    background-color: #0b48ed;
+    background-color: #1238CC;
     position: relative;
     display: flex;
     align-items: start;
@@ -141,7 +141,7 @@ html,body{
     position: relative;
     height: 100vh;
     width: 100vw;
-    background-color:#133cc4;
+    background-color:#032997;
     overflow: hidden;
 }
 
@@ -159,7 +159,7 @@ html,body{
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    background-color: #0b48ed;
+    background-color: #1238CC;
     font-family: a;
     padding: 0px 150px;
 }
@@ -180,7 +180,7 @@ html,body{
 #page5{
     height: 100vh;
     width: 100vw;
-    background-color: #133cc4;
+    background-color: #1238CC;
     position: relative;
 }
 
@@ -198,7 +198,7 @@ html,body{
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    background-color: #0b48ed;
+    background-color: #1238CC;
     font-family: a;
     padding: 0px 150px;
 }
@@ -219,7 +219,7 @@ html,body{
 #page7{
     height: 100vh;
     width: 100vw;
-    background-color: #133cc4;
+    background-color: #1238CC;
     position: relative;
 }
 
@@ -229,24 +229,294 @@ html,body{
     min-width: 100vw;
 }
 
-.page7-cir{
-    height: 39vw;
-    width: 39vw;
+#page7 .page7-cir{
+    height: 30vw;
+    width: 30vw;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 9;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     /* background-color: red; */
     border: 1px solid white;
     border-radius: 50%;
-    position: absolute;
-    align-content: center;
-    justify-content: center;
-    z-index: 9;
 }
 
-.page7-cir-inner{
+.page7-cir #page7-cir-inner{
     height: 70%;
     width: 70%;
     border: 1px solid white;
     border-radius: 50%;
+}
+
+#page8{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+#page8 video{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#page8 #page8-bottom h1{
+    position: absolute;
+    z-index: 10;
+    left: 36%;
+    bottom: 8%;
+    font-family: a;
+    font-size: 78px;
+    color: rgba(240, 248, 255, 0.897);
+}
+
+#page8 button{
+    height: 7%;
+    padding: 10px 12px;
+    position: absolute;
+    z-index: 10;
+    left: 47%;
+    bottom: 2%;
+    font-family: a;
+    font-size: 15px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.83);
+    color: #032997;
+    border: 1px solid aliceblue;
+}
+
+#page9{
+    display: flex;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1238CC;
+}
+
+#page9 .left9{
+    height: 100%;
+    width: 35%;
+    /* background-color: wheat; */
+    position: relative;
+    font-family: a;
+}
+
+#page9 .left9 h2{
+    position: absolute;
+    top: 40%;
+    left: 5%;
+    transform: translateX(52%);
+    font-size: 80px;
+    font-weight: 100;
+    line-height: 1;
+    color: white;
+}
+
+#page9 .right9{
+    height: 100%;
+    width: 65%;
+    /* background-color: rebeccapurple; */
+    position: relative;
+}
+
+.right9 .right9-center{
+    height: 48%;
+    width: 62%;
+    /* background-color: blanchedalmond; */
+    position: absolute;
+    border-radius: 10px;
+    top: 30%;
+    left: 5%;
+    background-image: url(https://thisismagma.com/wp-content/uploads/2023/04/magma.wp2.cubdev.com-home-1.jpeg);
+    /* object-fit: cover; */
+    background-size: cover;
+}
+
+#page10{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1238CC;
+}
+
+#page10 .right10{
+    height: 100%;
+    width: 65%;
+    /* background-color: #fff; */
+    position: relative;
+    transform: translateX(54%);
+}
+
+#page10 .right10-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    font-family: a;
+    color: white;
+    left: 5%;
+}
+
+#page10 .right10-inner h1{
+    font-size: 38px;
+}
+
+#page10 .right10-inner p{
+    font-size: 20px;
+}
+
+#page11{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    background-color: aliceblue;
+}
+
+#page11 #head{
+    position: relative;
+    top: 2%;
+    left: 10%;
+    font-size: 3vw;
+    color: #000;
+    font-weight: 300;
+}
+
+
+#page11 .page11-inner{
+    display: flex;
+    height: 25%;
+    width: 100vw;
+    /* background-color: aliceblue; */
+    margin: 20px 0px;
+    font-family: a;
+}
+
+.page11-inner .left11{
+    position: relative;
+    height: 100%;
+    width: 70%;
+    /* position: absolute; */
+    /* left: 5%; */
+    /* background-color: mediumseagreen; */
+}
+
+.left11 img{
+    height: 100%;
+    width: 64%;
+    object-fit: cover;
+    position: absolute;
+    left: 15%;
+    border-radius: 8%;
+    
+    /* transform: translateX(15%); */
+}
+
+.page11-inner .right11{
+    padding:3.5vw;
+    left: 50%;   
+    height: 100%;
+    width: 70%;
+    /* position: absolute; */
+    /* left: 5%; */
+    /* background-color: mediumaquamarine; */
+}
+
+.right11 h4{
+    font-size: 100;
+}
+
+.right11 h1{
+    font-size: 1.5vw;
+}
+
+#page12{
+    height: 100vh;
+    width: 100vw;
+    background-color:  #02268e;
+    position: relative;
+}
+
+.page12-inner{
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    color: #fff;
+    font-family: a;
+}
+.page12-inner>h1{
+    font-size: 5vw;
+    font-weight: 100;
+}
+.page12-inner>p{
+    font-size: 1.3vw;
+}
+
+#page13{
+    height: 50vh;
+    width: 100vw;
+    background-color: #000;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#page13 h1{
+    font-size: 85px;
+    font-family: c;
+    font-weight: 200;
+    color: aliceblue;
+    width: 45%;
+    position: absolute;
+    left: 5%;
+}
+
+#page13 button{
+    height: 13%;
+    width: 10%;
+    padding: 10px 10px;
+    font-family: b;
+    font-size: 12px;
+    border-radius: 50px;
+    background-color: #0b48ed;
+    color: aliceblue;
+    position: absolute;
+    left: 5%;
+    bottom: 3%;
+}
+
+#page14{
+    position: relative;
+    height: 50vh;
+    width: 100vw;
+    background-color: #000;
+}
+
+.page14-inner{
+    height: 33.33%;
+    width: 100%;
+    /* background-color: goldenrod; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: a;
+    color: aliceblue;
+}
+
+.page14-inner h1{
+    padding-left: 5%;
+}
+
+.page14-inner i{
+    font-size: 40px;
+    padding-right: 5%;
 }
