@@ -296,7 +296,7 @@ html,body{
 #page9{
     display: flex;
     position: relative;
-    height: 100vh;
+    height: 80vh;
     width: 100vw;
     background-color: #1238CC;
 }
@@ -377,7 +377,7 @@ html,body{
     position: relative;
     height: 100vh;
     width: 100vw;
-    background-color: aliceblue;
+    background-color: rgba(240, 248, 255, 0.834);
 }
 
 #page11 #head{
@@ -387,6 +387,7 @@ html,body{
     font-size: 3vw;
     color: #000;
     font-weight: 300;
+    font-family: a;
 }
 
 
@@ -413,7 +414,7 @@ html,body{
     width: 64%;
     object-fit: cover;
     position: absolute;
-    left: 15%;
+    left: 5%;
     border-radius: 8%;
     
     /* transform: translateX(15%); */
@@ -438,9 +439,9 @@ html,body{
 }
 
 #page12{
-    height: 100vh;
+    height: 53vh;
     width: 100vw;
-    background-color:  #02268e;
+    background-color:  #0000009f;
     position: relative;
 }
 
@@ -462,7 +463,7 @@ html,body{
 #page13{
     height: 50vh;
     width: 100vw;
-    background-color: #000;
+    background-color: #0000009f;
     display: flex;
     position: relative;
     align-items: flex-start;
@@ -471,11 +472,11 @@ html,body{
 }
 
 #page13 h1{
-    font-size: 85px;
+    font-size: 70px;
     font-family: c;
     font-weight: 200;
     color: aliceblue;
-    width: 45%;
+    width: 36%;
     position: absolute;
     left: 5%;
 }
@@ -498,7 +499,7 @@ html,body{
     position: relative;
     height: 50vh;
     width: 100vw;
-    background-color: #000;
+    background-color: #0000009f;
 }
 
 .page14-inner{
@@ -510,13 +511,33 @@ html,body{
     justify-content: space-between;
     font-family: a;
     color: aliceblue;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.56);
+    position: relative;
 }
 
 .page14-inner h1{
     padding-left: 5%;
+    font-size: 38px;
+    z-index: 9999;
 }
 
 .page14-inner i{
-    font-size: 40px;
+    font-size: 38px;
     padding-right: 5%;
+    z-index: 9999;
+}
+
+.page14-inner .center14{
+    height: 0%;
+    width: 100%;
+    left: 50%;
+    top:50%;
+    position: absolute;
+    background-color: #0a3cce;
+    transform: translate(-50%,-50%);
+    transition: all ease .5s;
+}
+
+.page14-inner:hover .center14{
+    height: 100%;
 }
