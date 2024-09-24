@@ -1,0 +1,144 @@
+
+  
+   .cards {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    
+  }
+  .no-of-core-section{
+    margin-top:2%;
+  }
+  .no-of-core-cardeSection{
+    margin-bottom: 2%;
+    margin-right: 0%;
+  }
+  .fontSizeClass{
+    font-size:25px;
+   
+  
+  }
+  .borderDigaram {
+    border: 3px solid rgba(211, 211, 211, 0.623);
+    margin-top: 2%;
+    width: 90%;
+    height:90%;
+   margin-left:5%;
+   
+  }
+  ::ng-deep .no-of-core-utilized .p-card {
+    /* background-color: rgb(196, 255, 253) !important; */
+    background: linear-gradient(45deg,#4BCBEB,#a1c3e9)
+  }
+  ::ng-deep .buffer-cores .p-card {
+    /* background-color:#ffcba4 !important; */
+    background: linear-gradient(45deg,#2ed8b6,#b4e1d8);
+  }
+  ::ng-deep .pending-task .p-card {
+  /* background-color:  #dcd0ff !important; */
+  background: linear-gradient(45deg,#FFB64D,#e8cba2);
+
+  }
+  ::ng-deep .No-of-cores-prepared .p-card {
+    /* background-color: pink !important; */
+    background: linear-gradient(45deg,#FE9496,#f6cbd3);
+  
+    } 
+    /* :host ::ng-deep .p-card-header {
+      background-color: var(--cyan-500);
+      border-color: var(--cyan-500);
+      color: #ffffff;
+    } */
+
+    :host ::ng-deep .p-card-header {
+      background-color: var(--teal-400);
+      border-color: var(--teal-400);
+      color:white;
+     
+    }
+
+    /* :host ::ng-deep .p-card-header {
+      background-color: var(--teal-500);
+      border-color: var(--teal-500);
+      color: #ffffff;
+
+  } */
+
+  :host ::ng-deep .p-card-content {
+      border-color: var(--teal-500);
+  }
+  .card-count{
+    height: 100%;
+    width:15%;
+    text-align: center;
+  }
+    .no-of-core-utilized{
+      height: 100%;
+      width:15%;
+      text-align: center;
+    }
+    .buffer-cores{
+      height: 100%;
+      width: 15%;
+      text-align: center;
+    }
+    .pending-task{
+      height: 100%;
+      width: 15%;
+      text-align: center;
+    }
+    .No-of-cores-prepared{
+      height: 100%;
+      width: 15%;
+      text-align: center;
+    
+    }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+  
+  
+ 
+  
+ 
+  
+  
+  
+  

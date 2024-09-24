@@ -1,0 +1,83 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+
+  </div>
+  <div class="p-toolbar-group-center">
+    <h2 class="m-0">Alarm History Details Report</h2>
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-button pRipple severity="info" label="Filter" icon="pi pi-filter" (click)="showFilters = !showFilters" />
+    <p-button pRipple severity="help" label="Export" icon="pi pi-upload" (click)="generateAlarmExcelReport()" />
+  </div>
+</p-toolbar>
+<div *ngIf="showFilters">
+
+  <p-calendar [(ngModel)]="startDateTime" (ngModelChange)="dateTimeValidation()" [iconDisplay]="'input'"
+    [showIcon]="true" inputId="icondisplay" [showOnFocus]="true" [showTime]="true" hourFormat="24"
+    [styleClass]="'custom-height'" placeholder="Start Date" />
+
+  <p-calendar [(ngModel)]="endDateTime" (ngModelChange)="dateTimeValidation()" [iconDisplay]="'input'" [showIcon]="true"
+    inputId="icondisplay" [showOnFocus]="true" [showTime]="true" hourFormat="24" [styleClass]="'custom-height'"
+    placeholder="End Date" />
+
+
+
+
+  <p-dropdown [options]="dropDownList" [(ngModel)]="equipmentName" placeholder="Select a Equipmnet Name"
+    [ngStyle]="{'padding-left': '10px'}"></p-dropdown>
+
+
+
+
+  <div>
+    <p-button label="Search" (click)="fetchEquipmentAlarmHistoryDetailsByAllFilters()"
+      [disabled]="disableSearchButton"></p-button>
+    <p-button label="Reset" (click)="resetData()"></p-button>
+  </div>
+</div>
+
+
+<p-table #dt [value]="alarmHistoryDetailsList"
+  [globalFilterFields]="['equipmentName', 'equipmentAlarmName', 'equipmentAlarmDesc','equipmentAlarmOccurredDateTime', 'equipmentAlarmResolvedDateTime']"
+  [rows]="10" [paginator]="true" styleClass="p-datatable-gridlines" [scrollable]="true" scrollHeight="500px"
+  [resizableColumns]="true" [exportHeader]="'customExportHeader'" [rowHover]="true">
+
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-iconField iconPosition="left" class="ml-auto">
+        <p-inputIcon>
+          <i class="pi pi-search"></i>
+        </p-inputIcon>
+        <input pInputText type="text" (input)="applyGlobalFilter($event)" placeholder="  Search keyword"
+          style="width: 200px;" />
+      </p-iconField>
+
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr role="row">
+      <th>Sr No</th>
+      <th pSortableColumn="equipmentName">Equipment Name<p-sortIcon field="equipmentName" /></th>
+      <th pSortableColumn="equipmentAlarmName">Alarm Name<p-sortIcon field="equipmentAlarmName" /></th>
+      <th pSortableColumn="equipmentAlarmDesc">Alarm Description<p-sortIcon field="equipmentAlarmDesc" /></th>
+      <th pSortableColumn="equipmentAlarmOccurredDateTime">Alarm Occurred Datetime<p-sortIcon
+          field="equipmentAlarmOccurredDateTime" /></th>
+      <th pSortableColumn="equipmentAlarmOccurredDateTime">Alarm Resolved Datetime<p-sortIcon
+          field="equipmentAlarmResolvedDateTime" /></th>
+
+    </tr>
+  </ng-template>
+
+
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ rowData['equipmentName'] }}</td>
+      <td>{{ rowData['equipmentAlarmName'] }}</td>
+      <td>{{ rowData['equipmentAlarmDesc'] }}</td>
+      <td>{{ rowData['equipmentAlarmOccurredDateTime'] }}</td>
+      <td>{{ rowData['equipmentAlarmOccurredDateTime'] }}</td>
+    </tr>
+  </ng-template>
+</p-table>

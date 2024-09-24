@@ -1,0 +1,158 @@
+.card {
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6; /* Add border to the table */
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6; /* Add border to the right of each cell */
+}
+
+th {
+    background-color: #c9d3dd; /* Change the color of the table header */
+    color: black; /* Change the text color in the header to white for better contrast */
+}
+
+:host ::ng-deep .p-button {
+    margin: 0.5rem;
+}
+
+:host ::ng-deep .pi-pencil, 
+:host ::ng-deep .pi-check, 
+:host ::ng-deep .pi-times, 
+:host ::ng-deep .pi-trash {
+    font-size: 1.2rem;
+}
+
+:host ::ng-deep .p-inputtext {
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tr:hover {
+    background-color: #ddd; /* Change this to the color you want for hover */
+}
+
+
+
+
+.p-calendar .p-datepicker {
+    width: 100px;
+  }
+
+
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-container p-calendar,
+  .filter-container p-dropdown,
+  .filter-container p-button {
+    width: 200px;
+    margin-bottom: 10px;
+  }
+  
+  .filter-container p-button:last-child {
+    margin-bottom: 0;
+  }
+
+
+
+
+
+  .card-container {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+  height: 180px;
+    padding-top: 5px;
+  }
+  
+  .card-container p-card {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .card-container p-card:last-child {
+    margin-right: 0;
+  }
+  
+  .count {
+    font-size: 54px; /* adjust this value to change the size of the count */
+  }
+  
+  p-card .p-card-title {
+    color: white; /* sets the color of the header text */
+  }
+  
+  p-card[header="READY"] .p-card-header {
+    background-color: yellow !important;
+  }
+  
+  p-card[header="IN_PROGRESS"] .p-card-header {
+    background-color: orange !important;
+  }
+  
+  p-card[header="COMPLETED"] .p-card-header {
+    background-color: green !important;
+  }
+
+
+
+
+  .chart-container {
+    width: 100%; /* Sets the width of the chart container */
+    height: 500px; /* Sets the height of the chart container */
+    margin: 0 auto; /* Centers the chart container horizontally */
+    background-color: #fff; /* Sets the background color of the chart container */
+    border: 1px solid #ddd; /* Sets a border around the chart container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow to the chart container */
+}
+
+.p-chart {
+    width: 100%; /* Sets the width of the chart */
+    height: 100%; /* Sets the height of the chart */
+}
+  
+  
+  ::ng-deep .p-datepicker table td {
+    padding: 0.2rem !important;
+  }
+  
+  ::ng-deep .p-datepicker table td > span {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+  
+  ::ng-deep .p-datepicker table {
+    font-size: 10pt;
+    margin: -0.143rem 0;
+  }
+  
+  ::ng-deep .p-datepicker .p-datepicker-header {
+    padding: 0.2rem;
+  }
+  
+ 

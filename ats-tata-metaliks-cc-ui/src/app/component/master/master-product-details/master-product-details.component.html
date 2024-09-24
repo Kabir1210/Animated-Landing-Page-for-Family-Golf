@@ -1,0 +1,204 @@
+<!-- <div style="display: flex; justify-content: center;">
+    <h2 class="m-0">Master Product Details</h2>
+  </div> -->
+
+<!-- <p-toolbar styleClass="mb-4 gap-2">
+    <div style="display: flex; justify-content: center;">
+        <h2 class="m-0">Master Product Details</h2>
+      </div>
+    <ng-template pTemplate="right">
+        <p-button pRipple severity="success" label="New" icon="pi pi-plus" class="mr-2" 
+        (click)="openAddProductDialog()" />
+    </ng-template>
+</p-toolbar> -->
+
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+
+    </div>
+    <div class="p-toolbar-group-center">
+        <h2 class="m-0">Master Core Details</h2>
+    </div>
+    <div class="p-toolbar-group-end">
+        <p-button pRipple severity="success" label="New" icon="pi pi-plus" class="mr-2" 
+        (click)="openAddProductDialog()" />
+    </div>
+</p-toolbar>
+
+<!-- <div class="card"> -->
+    <p-toast position="top-center" class="custom-toast-container"></p-toast>
+
+
+    
+    <p-table #dt [value]="productDetailsTableList"
+        [globalFilterFields]="['productName', 'palletCode', 'skuCode', 'quantity']" [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" styleClass="p-datatable-gridlines" [scrollable]="true"
+        scrollHeight="550px" [resizableColumns]="true" [exportHeader]="'customExportHeader'" [rowHover]="true">
+
+
+        <ng-template pTemplate="caption">
+            <div class="flex">             
+              <p-iconField iconPosition="left" class="ml-auto">
+                <p-inputIcon>
+                  <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input 
+                  pInputText 
+                  type="text" 
+                  (input)="applyGlobalFilter($event)" 
+                  placeholder="  Search keyword"
+                  style="height: 30px;" [style]="{'width':'200px'}" />
+                  </p-iconField>
+               
+                  </div>
+                  </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr role="row">
+                <th>Sr No</th>
+                <th pSortableColumn="productName">Core Size<p-sortIcon field="productName" /></th>
+                <th pSortableColumn="palletCode">Core Discription<p-sortIcon field="palletCode" /></th>
+                <th pSortableColumn="skuCode">CDateTime<p-sortIcon field="skuCode" /></th>
+                <th pSortableColumn="quantity">IsActive<p-sortIcon field="quantity" /></th>
+                <th>Action</th>
+
+                <!-- <th pSortableColumn="sr.no" style="width:20%">
+            Sr.No.
+        </th>
+          <th pSortableColumn="productName" style="width:22%">
+            Id <p-sortIcon field="productName" />
+        </th>
+        <th pSortableColumn="palletCode" style="width:22%">
+            Name <p-sortIcon field="palletCode" />
+        </th>
+        <th pSortableColumn="skuCode" style="width:22%">
+            Code <p-sortIcon field="skuCode" />
+        </th>
+        <th pSortableColumn="quantity" style="width:22%">
+            Quantity <p-sortIcon field="quantity" />
+        </th> -->
+
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr>
+                <td>{{ rowIndex + 1 }}</td>
+                <td>{{ rowData['coreSize'] }}</td>
+                <td>{{ rowData['productDesc'] }}</td>
+                <td>{{ rowData['cdateTime'] }}</td>
+                <td>{{ rowData['productIsActive'] }}</td>
+                <td>
+                   
+                    <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="false" [outlined]="false"
+                        severity="success" (click)="editMasterProductDetails(rowData)" />
+                    <p-button pRipple icon="pi pi-trash" severity="danger" [rounded]="false" [outlined]="false" (click)="deleteMasterProductDetails(rowData)"/>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+    <form #productForm="ngForm">
+    <p-dialog [(visible)]="productDialog" [style]="{ width: '550px' }" header="Core Size Details" [modal]="true"
+        styleClass="p-fluid">
+        <ng-template pTemplate="content">
+
+            <div class="field">
+                <label for="name">Core Size :</label>
+                <input type="text" pInputText id="name" [(ngModel)]="masterProduct.coreSize" required name ="name" #name="ngModel" autofocus />
+                
+            </div>
+            <small class="p-error" style="padding-left: 40%;" *ngIf="name.invalid && (name.dirty || name.touched)">
+                &emsp; &emsp;  Core Size is required.
+            </small>
+            <br>
+            <div class="field">
+                <label for="name">Core Discription :</label>
+                <input type="text" pInputText id="productDesc" [(ngModel)]="masterProduct.productDesc" required name ="productDesc" #productDesc="ngModel" autofocus />
+                
+            </div>
+            <small class="p-error" style="padding-left: 40%;" *ngIf="productDesc.invalid && (productDesc.dirty || productDesc.touched)">
+              Core Discription is required.
+            </small>
+            <br>
+            <div class="field">
+                <label for="isActive">Is Active :</label>
+                <p-radioButton id="isActive" name="isActive" value="1" [(ngModel)]="masterProduct.productIsActive" inputId="active"></p-radioButton>
+                <label for="active" class="p-radiobutton-label">Active</label>
+                <p-radioButton id="isActive" name="isActive" value="0" [(ngModel)]="masterProduct.productIsActive" inputId="inactive"></p-radioButton>
+                <label for="inactive" class="p-radiobutton-label">Inactive</label>
+            </div>
+
+
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()"/>
+            <p-button pRipple label="Save" icon="pi pi-check" [text]="true"  (click)="showConfirmationDialog = true" [disabled]="productForm.invalid"/>
+        </ng-template>
+       
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+</form>
+
+
+
+<!-- </div> -->
+
+
+<p-dialog [(visible)]="showConfirmationDialog" [style]="{ width: '350px' }" header="Confirmation" [modal]="true"
+    styleClass="p-fluid">
+    <hr>
+    <ng-template pTemplate="content">
+        <p>Are you sure?</p>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideConformationDialog()"/>
+        <p-button pRipple label="Submit" icon="pi pi-check" [text]="true" (click)="submitForm()" />
+        
+    </ng-template>
+</p-dialog>
+
+
+
+<form #productForm="ngForm">
+    <p-dialog [(visible)]="addProductDialog" [style]="{ width: '600px' }" header="Core Size Details" [modal]="true"
+        styleClass="p-fluid">
+        <ng-template pTemplate="content">
+
+            <div class="field">
+                <label for="name">Core Size :</label>
+                <input type="text" pInputText id="name" [(ngModel)]="addmasterProduct.coreSize" required name ="name" #name="ngModel" autofocus />
+                <small class="p-error" *ngIf="name.invalid && (name.dirty || name.touched)">
+                    Core Size is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="name">Core Discription :</label>
+                <input type="text" pInputText id="productDesc" [(ngModel)]="addmasterProduct.productDesc" required name ="productDesc" #productDesc="ngModel" autofocus />
+                <small class="p-error" *ngIf="productDesc.invalid && (productDesc.dirty || productDesc.touched)">
+                    Core Discription is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="isActive">Is Active :</label>
+                <p-radioButton id="isActive" name="isActive" [value]=1 [(ngModel)]="addmasterProduct.productIsActive" inputId="active"></p-radioButton>
+                <label for="active" class="p-radiobutton-label">Active</label>
+                <p-radioButton id="isActive" name="isActive" [value]=0 [(ngModel)]="addmasterProduct.productIsActive" inputId="inactive"></p-radioButton>
+                <label for="inactive" class="p-radiobutton-label">Inactive</label>
+
+                
+
+            </div>
+
+
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()"/>
+            <p-button pRipple label="Save" icon="pi pi-check" [text]="true"  (click)="addMasterProductDetails(addmasterProduct)" [disabled]="productForm.invalid"/>
+        </ng-template>
+       
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+</form>

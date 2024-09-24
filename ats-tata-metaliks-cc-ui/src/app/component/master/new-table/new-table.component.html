@@ -1,0 +1,52 @@
+<!-- <p>new-table works!</p>
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products; let i = index" [pEditableRow]="product">
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.code">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.code}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.name">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.name}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="product.price">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{product.price}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <button pButton type="button" pRipple icon="pi pi-pencil" pInitEditableRow (click)="onRowEditInit(product)"></button>
+                    <button pButton type="button" pRipple icon="pi pi-check" pSaveEditableRow (click)="onRowEditSave(product, i)"></button>
+                    <button pButton type="button" pRipple icon="pi pi-times" pCancelEditableRow (click)="onRowEditCancel(product, i)"></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->

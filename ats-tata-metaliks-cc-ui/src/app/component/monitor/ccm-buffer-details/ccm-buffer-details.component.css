@@ -1,0 +1,34 @@
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+    font-size: 1.5rem; /* Increase the font size of all cells */
+    text-align: center;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+    text-align: center;
+}
+
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td:nth-child(3) {
+    font-size: 1.5rem; /* Increase the font size of the bufferCount cells */
+}
+
+:host ::ng-deep .p-datatable {
+    margin: 0 auto; /* Center the table horizontally */
+    border-collapse: collapse;
+    width: 80%; /* Set the width of the table */
+    box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+:host ::ng-deep .p-datatable th {
+    background-color: #c9d3dd; /* Change the color of the table header */
+    color: black; /* Change the text color in the header to white for better contrast */
+    padding: 10px;
+    text-align: left;
+}
+
+:host ::ng-deep .p-datatable td {
+    padding: 10px;
+    text-align: left;
+}
+
+

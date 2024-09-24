@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <div class="profile-picture">
+                <img src="{{currentUser?.userPhotoImageIn64Base}}" alt="Profile Picture">
+            </div>
+            <div class="profile-info">
+                <p class="welcome-text">Welcome,</p>
+                <p class="user-title">{{ currentUser?.userTitle }} {{ currentUser?.firstName }}</p>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="section-header">
+                <i class="far fa-clone pr-1"></i> General Information
+            </div>
+            <hr>
+            <div class="details-table">
+                <table class="table">
+                    <tr>
+                        <th>First Name</th>
+                        <td>{{ currentUser?.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Name</th>
+                        <td>{{ currentUser?.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ currentUser?.emailId }}</td>
+                    </tr>
+                    <tr>
+                        <th>Role Name</th>
+                        <td>{{ currentUser?.roleName }}</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile No</th>
+                        <td>{{ currentUser?.contactNumber }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

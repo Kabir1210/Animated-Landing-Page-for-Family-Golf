@@ -1,0 +1,89 @@
+.card {
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  border: 1px solid #dee2e6; /* Add border to the table */
+}
+
+td {
+  padding: 0.30rem;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6; /* Add border to the right of each cell */
+}
+
+th {
+  background-color: #c9d3dd; /* Change the color of the table header */
+  color: black; /* Change the text color in the header to white for better contrast */
+}
+
+:host ::ng-deep .p-button {
+  margin: 0.5rem;
+}
+
+:host ::ng-deep .pi-pencil, 
+:host ::ng-deep .pi-check, 
+:host ::ng-deep .pi-times, 
+:host ::ng-deep .pi-trash {
+  font-size: 1.2rem;
+}
+
+:host ::ng-deep .p-inputtext {
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+tr:hover {
+  background-color: #ddd; /* Change this to the color you want for hover */
+}
+
+
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+
+}
+.field label {
+  flex: 1;
+  margin-bottom: 5px;
+}
+.field input {
+  flex: 2;
+  margin-bottom: 5px;
+}
+::ng-deep .p-datepicker table td {
+  padding: 0.2rem !important;
+}
+
+::ng-deep .p-datepicker table td > span {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+::ng-deep .p-datepicker table {
+  font-size: 10pt;
+  margin: -0.143rem 0;
+}
+
+::ng-deep .p-datepicker .p-datepicker-header {
+  padding: 0.2rem;
+}

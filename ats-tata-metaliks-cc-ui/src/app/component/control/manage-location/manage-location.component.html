@@ -1,0 +1,71 @@
+<!-- <div class="p-toolbar-group-center">
+  <h4 class="heading">Manage Location</h4>
+</div> -->
+
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+
+  </div>
+  <div class="p-toolbar-group-center">
+      <h2 class="m-0">Manage Location</h2>
+  </div>
+  <div class="p-toolbar-group-end">
+    <!-- <p-button pRipple severity="info" label="Filter" icon="pi pi-filter" (click)="showFilters = !showFilters"/>
+    <p-button pRipple severity="help" label="Export" icon="pi pi-upload" (click)="dt.exportCSV()" /> -->
+  </div>
+</p-toolbar>
+
+<p-toast/>
+<div class="tables-container">
+  <div class="table-wrapper" style="margin-right: 90px;">
+    <table>
+      <tbody>
+        <tr *ngFor="let equipment of masterEquipmentDetailsList; index as i" [hidden]="i === 1 || i >= 6">
+          <td class="floor-id">{{ equipment.equipmentName }}</td>
+          <td>
+            <label class="switch">
+              <input type="checkbox" id="switch" (change)="toggleEquipmentActiveInactive(equipment)"
+                [checked]="equipment.equipmentIsActive == 1">
+              <span class="slider round"></span>
+            </label>
+          </td>
+          <td class="blink">
+            <ng-container *ngIf="equipment.equipmentIsActive == 1; else IsInActive">
+              <p style="color: rgb(58, 150, 58);">Active</p>
+            </ng-container>
+            <ng-template #IsInActive>
+              <p>InActive</p>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <tbody>
+        <tr *ngFor="let equipment of masterEquipmentDetailsList; index as i" [hidden]="i !== 1 && i < 6">
+          <td class="floor-id">{{ equipment.equipmentName }}</td>
+          <td>
+            <label class="switch">
+              <input type="checkbox" id="switch" (change)="toggleEquipmentActiveInactive(equipment)"
+                [checked]="equipment.equipmentIsActive == 1">
+              <span class="slider round"></span>
+            </label>
+          </td>
+          <td class="blink">
+            <ng-container *ngIf="equipment.equipmentIsActive == 1; else IsInActive">
+              <p style="color: rgb(58, 150, 58);">Active</p>
+            </ng-container>
+            <ng-template #IsInActive>
+              <p>InActive</p>
+            </ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+</div>

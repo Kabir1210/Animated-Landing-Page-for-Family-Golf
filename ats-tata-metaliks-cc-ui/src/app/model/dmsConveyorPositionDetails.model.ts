@@ -1,0 +1,27 @@
+export class DmsConveyorPositionDetailsModel{
+    conveyorDetailsId!:number;
+    conveyorName!:string;
+    equipmentType!:string;
+    conveyorDesc!:string;
+    lineNumber!:number;
+    palletPresent!:number;
+    palletPresentTagName!:string;
+    palletCode!:string;
+    palletCodeTagName!:string;
+    ccm!:number;
+    ccmTagName!:string;
+    dataRequest!:number;
+    dataRequestTagName!:string;
+    ccmDefaultValue!:number;
+    ccmBufferCount!:number;
+    ccmBufferCountTagName!:string;
+    alert!:string;
+    alertMsgTagName!:string;
+    cdatetime!:string;
+    isDeleted!:number;
+    isActive!:number;
+    conveyorStatusTagName!:number;
+    converyorStatusTagValue!:number;
+    conveyorMotorTagName!:number;
+    conveyorMotorTagValue!:number;
+}

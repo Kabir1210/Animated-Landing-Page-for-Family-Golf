@@ -1,0 +1,149 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+
+  </div>
+  <div class="p-toolbar-group-center">
+    <h2 class="m-0">Current Stock Details</h2>
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-button label="Info" [raised]="true" severity="info" label="Filter"  icon="pi pi-filter" (click)="showFilters = !showFilters"/>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p-button label="Help" [raised]="true" severity="help" label="Export"  icon="pi pi-upload"  (click)="generateCurrentStockDetailsReport()"/>
+    <!-- <p-button pRipple severity="info" label="Filter" icon="pi pi-filter" (click)="showFilters = !showFilters" />
+    <p-button pRipple severity="help" label="Export" icon="pi pi-upload"
+      (click)="generateCurrentStockDetailsReport()" /> -->
+
+
+  </div>
+</p-toolbar>
+
+
+
+
+<!-----------------Filter--------------------->
+
+<div class="collapse" id="stockReportFilter" *ngIf="showFilters"> <br>
+
+  <p-calendar [(ngModel)]="currentstartDateTime"   (ngModelChange)="dateTimeValidation()" [iconDisplay]="'input'"  [showIcon]="true" inputId="icondisplay"
+  [showOnFocus]="true" [showTime]="true" hourFormat="24" [styleClass]="'custom-height'" placeholder="Start Date"/>&nbsp;&nbsp;
+
+   <p-calendar [(ngModel)]="currentEndDateTime"   (ngModelChange)="dateTimeValidation()" [iconDisplay]="'input'"  [showIcon]="true" inputId="icondisplay"
+  [showOnFocus]="true"  [showTime]="true" hourFormat="24" [styleClass]="'custom-height'" placeholder="End Date"/>
+
+  <!-- <p-calendar placeholder="Start Date" [(ngModel)]="currentstartDateTime" (ngModelChange)="dateTimeValidation()"
+    [showTime]="true" hourFormat="24"></p-calendar>
+  <p-calendar placeholder="End Date" [(ngModel)]="currentEndDateTime" (ngModelChange)="dateTimeValidation()"
+    [showTime]="true" hourFormat="24" [ngStyle]="{'padding-left': '10px'}"></p-calendar> -->
+  <!-- <div *ngIf="disableSearchButton" style="color: red;">End date must be greater than start date</div> -->
+  <p-dropdown [options]="CoreSizeList" [(ngModel)]="selectedCoreSize" placeholder="Select a coreSize" filter="false"
+    [ngStyle]="{'padding-left': '10px'}"></p-dropdown>
+  <p-dropdown [options]="CoreShopList" [(ngModel)]="selectedCoreShop" placeholder="Select a coreShop" filter="false"
+    [ngStyle]="{'padding-left':'10px'}"></p-dropdown>&nbsp;&nbsp;
+    <input type="text" pInputText [(ngModel)]="palletCode"   placeholder="Pallet Code" style="width: 200px;"/>
+    <br>
+
+  <div> <br>
+    <p-button label="Search" (click)="findByAllFiltersDetails()" [disabled]="disableSearchButton"></p-button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <p-button label="Reset" (click)="resetFilters()"></p-button>
+    
+  </div> <br>
+
+
+</div>
+
+
+
+<!--------------------------------------------------->
+<!-- <div class="card"> -->
+<p-toast />
+<!-----------Table----->
+
+<p-table #dt [value]="currentStockDetailsList"
+  [globalFilterFields]="['palletCode', 'productName', 'coreSize', 'quantity','rackName','floorName','nomenclature','areaName','batchNumber','loadDatetime']"
+  [rows]="10" [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" styleClass="p-datatable-md" 
+  [tableStyle]="{'min-height': '2rem', 'min-width': '10rem'}"
+   [resizableColumns]="true" [exportHeader]="'customExportHeader'"
+  [rowHover]="true"
+  scrollHeight="550px">
+
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-iconField iconPosition="left" class="ml-auto">
+        <p-inputIcon>
+          <i class="pi pi-search"></i>
+        </p-inputIcon>
+        <input pInputText type="text" (input)="applyGlobalFilter($event)" placeholder="  Search keyword"
+          style="width: 200px;"  style="height: 30px;" />
+      </p-iconField>
+
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr role="row">
+      <th >Sr No</th>
+
+      <th pSortableColumn="palletCode">Pallet Code<p-sortIcon field="palletCode" /></th>
+      <th pSortableColumn="coreSize">Core Size<p-sortIcon field="coreSize" /></th>
+      <th pSortableColumn="coreShop">Core Shop<p-sortIcon field="coreShop" /></th>
+      <th pSortableColumn="quantity">Quantity<p-sortIcon field="quantity" /></th>
+      <th pSortableColumn="rackName">Rack Name<p-sortIcon field="rackName" /></th>
+      <th pSortableColumn="floorName">Floor Name<p-sortIcon field="floorName" /></th>
+      <th pSortableColumn="nomenclature">Nomenclature<p-sortIcon field="nomenclature" /></th>
+      <th pSortableColumn="batchNumber">Batch Number<p-sortIcon field="batchNumber" /></th>
+      <th pSortableColumn="loadDatetime">Load Datetime<p-sortIcon field="loadDatetime" /></th>
+
+      <th>Action</th>
+
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+    <tr *ngIf="rowData.palletCode!='NA'">
+      <td >{{ rowIndex + 1 }}</td>
+
+      <td class="font-size">{{ rowData['palletCode']}}</td>
+      <td class="font-size">{{ rowData['coreSize'] }}</td>
+      <td class="font-size">{{ rowData['coreShop']}}</td>
+      <td class="font-size">{{ rowData['quantity'] }}</td>
+      <td class="font-size">{{ rowData['rackName']}}</td>
+      <td class="font-size">{{ rowData['floorName']}}</td>
+      <td class="font-size">{{ rowData['nomenclature']}}</td>
+      <td class="font-size">{{ rowData['batchNumber']}}</td>
+      <td class="font-size">{{ rowData['loadDatetime']}}</td>
+
+      <td>
+        <ng-container *ngIf="rowData.masterPositionDetailsEntity.isManualDispatch === 0 && rowData.masterPositionDetailsEntity.emptyPalletPosition === 0; else inactiveStatus">
+          <p-button  class="dispatch-button" label="Dispatch" severity="success" [raised]="true" (click)="dispatchCurrentStockDetailsRow(rowData)" />
+        </ng-container> 
+        <ng-template #inactiveStatus>
+          <p-button  class="dispatch-button"  disabled  label="Dispatch" severity="success" [raised]="true" (click)="dispatchCurrentStockDetailsRow(rowData)" />
+        </ng-template>
+        <!-- <p-button  class="dispatch-button"    label="Dispatch" severity="success" [raised]="true" (click)="dispatchCurrentStockDetailsRow(rowData)" /> -->
+        <!-- <p-button label="Dispatch"  [rounded]="false" [outlined]="false" severity="success"
+          (click)="dispatchCurrentStockDetailsRow(rowData)" /> -->
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+<form #currentForm="ngForm">
+  <p-dialog [(visible)]="currentDialog" [style]="{ width: '350px',height:'400px' }" header="Add Dispatch Details "
+    [modal]="true" styleClass="p-fluid">
+
+
+    <div class="field">
+      <p-dropdown [options]="DestinationList" name="selectedDestination" [(ngModel)]="selectedDestination" placeholder="Select a Destination"
+         [ngStyle]="{'padding-left': '10px'}"></p-dropdown>
+
+    </div>
+
+
+    <ng-template pTemplate="footer">
+      <p-button pRipple label="No" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+      <p-button pRipple label="Yes" icon="pi pi-check" [text]="true" (click)="showDialog()"
+        [disabled]="currentForm.invalid" />
+    </ng-template>
+
+  </p-dialog>
+  <p-confirmDialog [style]="{ width: '450px' }" />
+</form>

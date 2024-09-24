@@ -1,0 +1,109 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body styles */
+body {
+  background-color: #f2f2f2;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Container styles */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Center vertically */
+}
+
+/* Card styles */
+.card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #251452; /* Dark blue background for header */
+  color: #fff;
+}
+
+.profile-picture {
+  flex: 0 0 100px; /* Fixed width for profile picture */
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 3px solid #070b3d; /* Border color for profile picture */
+}
+
+.profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.welcome-text {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.user-title {
+  font-size: 18px;
+}
+
+/* Card body styles */
+.card-body {
+  padding: 20px;
+}
+
+.section-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.details-table {
+  overflow-x: auto; /* Enable horizontal scrolling on small screens */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table styles */
+.table th, .table td {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  color: #555;
+}
+
+.table th {
+  width: 30%;
+  font-weight: bold;
+}
+
+/* Horizontal rule styles */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+

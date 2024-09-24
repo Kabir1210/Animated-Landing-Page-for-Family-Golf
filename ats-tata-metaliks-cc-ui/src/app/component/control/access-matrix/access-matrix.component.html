@@ -1,0 +1,54 @@
+<h2 style="margin-left: 45%;">Access Matrix</h2>
+
+<p-table #dt [value]="accessMatrixList"
+[globalFilterFields]="['productName', 'palletCode', 'skuCode', 'quantity']" [rows]="10"
+[rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" styleClass="p-datatable-gridlines" [scrollable]="true"
+scrollHeight="600px" [resizableColumns]="true" [exportHeader]="'customExportHeader'" [rowHover]="true">
+<!-- 
+<p-table #dt [value]="accessMatrixList" [globalFilterFields]="['productName', 'palletCode', 'skuCode', 'quantity']"
+  [rows]="10" [paginator]="true" styleClass="p-datatable-gridlines"> -->
+
+
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-iconField iconPosition="left" class="ml-auto">
+        <p-inputIcon>
+          <i class="pi pi-search"></i>
+        </p-inputIcon>
+        <input pInputText type="text" (input)="applyGlobalFilter($event)" placeholder="  Search keyword"
+          style="width: 200px;" />
+      </p-iconField>
+
+    </div>
+  </ng-template>
+
+
+
+
+  <ng-template pTemplate="header">
+    <tr role="row">
+      <th>Sr No</th>
+      <th pSortableColumn="field">Field<p-sortIcon field="field" /></th>
+      <th pSortableColumn="admin">Admin<p-sortIcon field="admin" /></th>
+      <th pSortableColumn="operator">Operator<p-sortIcon field="operator" /></th>
+      <th pSortableColumn="supervisor">Supervisor<p-sortIcon field="supervisor" /></th>
+
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ rowData['field'] }}</td>
+      <!-- <td>{{ rowData['admin'] }}</td> -->
+      <td><input type="checkbox" class="checkbox" [(ngModel)]="rowData.admin"(change)="updateNumericValue(rowData)" [ngClass]="{'cross-checkbox': rowData.admin === 0}" [disabled]="rowData.field === 'Access Matrix'"> </td>
+     
+
+      <td><input type="checkbox" class="checkbox" [(ngModel)]="rowData.operator" (change)="updateNumericValue(rowData)"
+          [ngClass]="{'cross-checkbox': rowData.operator === 0}"></td>
+      <td><input type="checkbox" class="checkbox" [(ngModel)]="rowData.supervisor" [(ngModel)]="rowData.supervisor"
+          (change)="updateNumericValue(rowData)" [ngClass]="{'cross-checkbox': rowData.supervisor === 0}"></td>
+
+    </tr>
+  </ng-template>
+</p-table>

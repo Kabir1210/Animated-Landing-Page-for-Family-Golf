@@ -1,0 +1,244 @@
+<!-- <div style="display: flex; justify-content: center;">
+  <h1 class="m-0">Master Product Details</h1>
+</div> -->
+
+
+
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+
+  </div>
+  <div class="p-toolbar-group-center">
+      <h2 class="m-0">Master Shift Details</h2>
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-button pRipple severity="success" label="New" icon="pi pi-plus" class="mr-2" 
+    (click)="openAddProductDialog()" />
+</div>
+</p-toolbar>
+
+
+<!-- <div class="card"> -->
+
+  <p-toast />
+
+  <p-table 
+  #dt 
+  [value]="shiftDetailsTableList"   
+  [globalFilterFields]="['shiftId', 'shiftNumber','shiftName', 'shiftDesc', 'shiftStartTime', 'shiftEndTime','cdateTime','userName']" 
+  [rows]="10"   
+  [rowsPerPageOptions]="[10, 25, 50]" 
+  [paginator]="true" styleClass="p-datatable-gridlines" 
+  [scrollable]="true"
+      scrollHeight="600px" 
+      [resizableColumns]="true" 
+      [exportHeader]="'customExportHeader'" 
+      [rowHover]="true">
+
+
+      <ng-template pTemplate="caption">
+        <div class="flex">             
+          <p-iconField iconPosition="left" class="ml-auto">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input 
+              pInputText 
+              type="text" 
+              (input)="applyGlobalFilter($event)" 
+              placeholder="  Search keyword"
+              style="width: 200px;" />
+              </p-iconField>
+           
+              </div>
+              </ng-template>
+
+
+
+      <ng-template pTemplate="header">
+          <tr role="row">
+              <th>Sr No</th>
+              <!-- <th pSortableColumn="shiftId">Shift Id<p-sortIcon field="shiftId" /></th> -->
+              <th pSortableColumn="shiftNumber">Shift Number<p-sortIcon field="shiftNumber" /></th>
+              <th pSortableColumn="shiftName">ShiftName <p-sortIcon field="shiftName" /></th>
+              <th pSortableColumn="shiftDesc">Shift Description<p-sortIcon field="shiftDesc" /></th>
+              <th pSortableColumn="shiftStartTime">Shift Start Time<p-sortIcon field="shiftStartTime" /></th>
+              <th pSortableColumn="shiftEndTime">Shift End Time<p-sortIcon field="shiftEndTime" /></th>
+              <!-- <th pSortableColumn="cdatetime">Created Date Time<p-sortIcon field="cdatetime" /></th> -->
+              <th pSortableColumn="userName">User Name<p-sortIcon field="userName" /></th>
+              <th>Action</th>
+
+          </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <tr>
+              <td>{{ rowIndex + 1 }}</td>
+              <!-- <td>{{ rowData['shiftId'] }}</td> -->
+              <td>{{ rowData['shiftNumber'] }}</td>
+              <td>{{ rowData['shiftName'] }}</td>
+              <td>{{ rowData['shiftDesc'] }}</td>
+              <td>{{ rowData['shiftStartTime'] }}</td>
+              <td>{{ rowData['shiftEndTime'] }}</td>
+              <!-- <td>{{ rowData['cdatetime'] }}</td> -->
+              <td>{{ rowData['userName'] }}</td>
+              <td>
+                  <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="false" [outlined]="false"
+                      severity="success" (click)="editMasterShiftDetails(rowData)" />
+                  <p-button pRipple icon="pi pi-trash" severity="danger" [rounded]="false" [outlined]="false" (click)="deleteMasterShiftDetails(rowData)"/>
+              </td>
+          </tr>
+      </ng-template>
+  </p-table>
+
+
+  <form #productForm="ngForm">
+  <p-dialog [(visible)]="productDialog" [style]="{ width: '550px' }" header="Shift Details" [modal]="true"
+      styleClass="p-fluid">
+      <ng-template pTemplate="content"> 
+
+          <div class="field" >
+              <label for="name">Shift Name :</label>
+              <input type="text" pInputText id="shiftName" [(ngModel)]="masterShift.shiftName" required name ="shiftName" #shiftName="ngModel" autofocus />
+              
+          </div>
+          <small class="p-error text"  style="padding-left: 40%;"  *ngIf="shiftName.invalid && (shiftName.dirty || shiftName.touched)">
+            Shift Name is required.
+          </small>
+
+
+          <div class="field">
+            <label for="name">Shift Description :</label>
+            <input type="text" pInputText id="shiftDesc" [(ngModel)]="masterShift.shiftDesc" required name ="shiftDesc" #shiftDesc="ngModel" autofocus />
+            
+        </div>
+        <small class="p-error text"  style="padding-left: 40%;"  *ngIf="shiftDesc.invalid && (shiftDesc.dirty || shiftDesc.touched)">
+          Shift Description is required.
+        </small>
+
+
+          <div class="field">
+            <label for="name">Shift Start Time:</label>
+            <input type="text" pInputText id="shiftStartTime" [(ngModel)]="masterShift.shiftStartTime" required name ="shiftStartTime" #shiftStartTime="ngModel" autofocus />
+            
+        </div>
+        <small class="p-error text"  style="padding-left: 40%;" *ngIf="shiftStartTime.invalid && (shiftStartTime.dirty || shiftStartTime.touched)">
+          Shift Start Time is required.
+        </small>
+
+        <div class="field">
+          <label for="name">Shift End Time :</label>
+          <input type="text" pInputText id="shiftEndTime" [(ngModel)]="masterShift.shiftEndTime" required name ="shiftEndTime" #shiftEndTime="ngModel" autofocus />
+          
+      </div>
+      <small class="p-error text"  style="padding-left: 40%;" *ngIf="shiftEndTime.invalid && (shiftEndTime.dirty || shiftEndTime.touched)">
+        Shift End Time is required.
+      </small>
+
+
+      </ng-template>
+
+      <ng-template pTemplate="footer">
+          <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()"/>
+          <p-button pRipple label="Save" icon="pi pi-check" [text]="true"  (click)="showConfirmationDialog = true" [disabled]="productForm.invalid"/> 
+      </ng-template>  
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+  </form>
+
+
+
+
+<!-- </div> -->
+
+
+<p-dialog [(visible)]="showConfirmationDialog" [style]="{ width: '350px' }" header="Confirmation" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+      <p>Are you sure?</p>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+      <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()"/>
+      <p-button pRipple label="Submit" icon="pi pi-check" [text]="true" (click)="submitForm()" />
+  </ng-template>
+</p-dialog>
+
+
+
+<form #productForm="ngForm">
+  <p-dialog [(visible)]="addShiftDialog" [style]="{ width: '550px' }" header="Shift Details" [modal]="true"
+      styleClass="p-fluid">
+      <ng-template pTemplate="content">
+<!-- 
+          <div class="field">
+              <label for="shiftId">Shift Id :</label>
+              <input type="text" pInputText id="shiftId" [(ngModel)]="addmasterShift.shiftId" required name ="shiftId" #shiftId="ngModel" autofocus />
+              <small class="p-error" *ngIf="shiftId.invalid && (shiftId.dirty || shiftId.touched)">
+                  Shift Id is required.
+              </small>
+          </div> -->
+          <div class="field">
+            <label for="name">Shift Number :</label>
+            <input type="text" pInputText id="shiftNumber" [(ngModel)]="addmasterShift.shiftNumber" required name ="shiftNumber" #shiftNumber="ngModel" autofocus />
+            <small class="p-error" *ngIf="shiftNumber.invalid && (shiftNumber.dirty || shiftNumber.touched)">
+               <!-- Shift Number is required. -->
+            </small>
+        </div>
+
+        <div class="field">
+          <label for="name">Shift Name :</label>
+          <input type="text" pInputText id="productDesc" [(ngModel)]="addmasterShift.shiftName" required name ="shiftName" #shiftName="ngModel" autofocus />
+          <small class="p-error" *ngIf="shiftName.invalid && (shiftName.dirty || shiftName.touched)">
+             <!-- Shift Name is required. -->
+          </small>
+      </div>
+      
+
+      <div class="field">
+        <label for="name">Shift Start Time :</label>
+        <input type="text" pInputText id="shiftStartTime" [(ngModel)]="addmasterShift.shiftStartTime" required name ="shiftStartTime" #shiftStartTime="ngModel" autofocus />
+        <small class="p-error" *ngIf="shiftStartTime.invalid && (shiftStartTime.dirty || shiftStartTime.touched)">
+           <!-- Shift Start Time is required. -->
+        </small>
+    </div>
+    
+    <div class="field">
+      <label for="name">Shift End Time :</label>
+      <input type="text" pInputText id="shiftEndTime" [(ngModel)]="addmasterShift.shiftEndTime" required name ="shiftEndTime" #shiftEndTime="ngModel" autofocus />
+      <small class="p-error" *ngIf="shiftEndTime.invalid && (shiftEndTime.dirty || shiftEndTime.touched)">
+         <!-- Shift Start Time is required. -->
+      </small>
+  </div>
+  
+          
+          <div class="field">
+              <label for="name">Shift Description :</label>
+              <input type="text" pInputText id="shiftDesc" [(ngModel)]="addmasterShift.shiftDesc" required name ="shiftDesc" #shiftDesc="ngModel" autofocus />
+              <small class="p-error" *ngIf="shiftDesc.invalid && (shiftDesc.dirty || shiftDesc.touched)">
+                 Shift Description is required.
+              </small>
+          </div>
+
+          <div class="field">
+            <label for="name">User Name :</label>
+            <input type="text" pInputText id="userName" [(ngModel)]="addmasterShift.userName" required name ="userName" #userName="ngModel" autofocus />
+            <small class="p-error" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+               <!-- Shift Start Time is required. -->
+            </small>
+        </div>
+          
+
+
+      </ng-template>
+      <ng-template pTemplate="footer">
+          <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()"/>
+          <p-button pRipple label="Save" icon="pi pi-check" [text]="true"  (click)="addMasterProductDetails(addmasterShift)" [disabled]="productForm.invalid"/>
+      </ng-template>
+     
+  </p-dialog>
+  <p-confirmDialog [style]="{ width: '450px' }" />
+</form>
+
+
+  

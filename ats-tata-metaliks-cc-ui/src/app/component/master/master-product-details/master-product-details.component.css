@@ -1,0 +1,164 @@
+/* Ensure the card and table layout is adjusted for displaying 10 records */
+.card {
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
+}
+.custom-toast-container {
+    top: 10% !important; /* Center vertically */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: auto; /* Adjust width as needed */
+  }
+  
+  .custom-toast-container .ui-toast-message {
+    text-align: center;
+    display: inline-block;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6; /* Add border to the table */
+  }
+  
+  td, th {
+    padding: 0.5rem; /* Adjust padding for smaller row size */
+    text-align: center;
+    font-size: 16px; /* Adjust font size for smaller text */
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6;
+}
+
+th {
+    background-color: #c9d3dd;
+    color: black;
+}
+
+tr {
+    height: 2.5rem; /* Adjust row height */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Adjustments for the field layout */
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.field label {
+    flex: 1;
+    margin-bottom: 5px;
+}
+
+.field input {
+    flex: 2;
+    margin-bottom: 5px;
+}
+
+::ng-deep .p-datepicker table td {
+    padding: 0.2rem !important;
+}
+
+::ng-deep .p-datepicker table td > span {
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+::ng-deep .p-datepicker table {
+    font-size: 10pt;
+    margin: -0.143rem 0;
+}
+
+::ng-deep .p-datepicker .p-datepicker-header {
+    padding: 0.2rem;
+}
+
+.dispatch-button {
+    width: 10pt;
+    height: 10pt;
+    font-size: small;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1200px) {
+    .card {
+        padding: 1.5rem;
+        margin: 1.5rem;
+    }
+    td, th {
+        padding: 0.3rem;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .card {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    td, th {
+        padding: 0.3rem;
+        font-size: 11px;
+    }
+    .dispatch-button {
+        width: 8pt;
+        height: 8pt;
+        font-size: x-small;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 0.75rem;
+        margin: 0.75rem;
+    }
+    td, th {
+        padding: 0.2rem;
+        font-size: 10px;
+    }
+    .dispatch-button {
+        width: 6pt;
+        height: 6pt;
+        font-size: xx-small;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        padding: 0.5rem;
+        margin: 0.5rem;
+    }
+    td, th {
+        padding: 0.1rem;
+        font-size: 9px;
+    }
+    .dispatch-button {
+        width: 5pt;
+        height: 5pt;
+        font-size: xx-small;
+    }
+}

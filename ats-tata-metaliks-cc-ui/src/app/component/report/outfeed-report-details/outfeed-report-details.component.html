@@ -1,0 +1,162 @@
+
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+  
+    </div>
+    <div class="p-toolbar-group-center">
+        <h2 class="m-0">Outfeed Mission Details</h2>
+    </div>
+    <div class="p-toolbar-group-end">
+      <p-button pRipple severity="info" label="Filter" icon="pi pi-filter" (click)="showFilters = !showFilters"/>
+      <!-- <p-button pRipple severity="help" label="Export" icon="pi pi-upload" (click)="dt.exportCSV()" /> -->
+      <p-button label="Help" [raised]="true" severity="help" label="Export"  icon="pi pi-upload"  (click)="generateOutfeedDetailsReport()"/>
+    </div>
+  </p-toolbar>
+  <p-toast></p-toast>
+  
+  <!-- <div class="card-container">
+    <p-card [header]="'READY'" [ngStyle]="{'margin-left': '50%'}">
+      <p>{{ readyCount }}</p>
+    </p-card>
+  
+    <p-card [header]="'IN_PROGRESS'" [ngStyle]="{'margin-right': '10px'}">
+      <p>{{ inprogressCount }}</p>
+    </p-card>
+  
+    <p-card [header]="'COMPLETED'">
+      <p>{{ completedCount }}</p>
+    </p-card>
+  </div> -->
+  
+  
+  
+  
+  
+  <div *ngIf="showFilters">
+  
+    <p-calendar [(ngModel)]="missionRuntimeOutfeedStartDateTime"   (ngModelChange)="dateTimeValidation()" [iconDisplay]="'input'"  [showIcon]="true" inputId="icondisplay"
+    [showOnFocus]="true" 
+     [showTime]="true" hourFormat="24" [styleClass]="'custom-height'" placeholder="Start Date"/>
+
+     <p-calendar [(ngModel)]="missionRuntimeOutfeedEndDateTime"   (ngModelChange)="dateTimeValidation()" [iconDisplay]="'input'"  [showIcon]="true" inputId="icondisplay"
+    [showOnFocus]="true" 
+     [showTime]="true" hourFormat="24" [styleClass]="'custom-height'" placeholder="End Date"/>
+
+
+
+
+  
+  <!-- <p-calendar placeholder="Start Date" [(ngModel)]="missionRuntimeOutfeedStartDateTime" [showTime]="true" hourFormat="24"></p-calendar>
+  <p-calendar placeholder="End Date" [(ngModel)]="missionRuntimeOutfeedEndDateTime" [showTime]="true" hourFormat="24"></p-calendar> -->
+  
+  <p-dropdown [options]="statuses" [(ngModel)]="selectedStatus" placeholder="Select a Status" ></p-dropdown>
+  <p-dropdown [options]="CoreSizeList" [(ngModel)]="selectedCoreSize" placeholder="Select a coreSize" ></p-dropdown>
+
+  <p-dropdown [options]="DeatinationList" [(ngModel)]="selectedDestinationArea" placeholder="Select a destination" [ngStyle]="{'padding-left': '10px'}"></p-dropdown>
+  <p-dropdown [options]="shiftListList" [(ngModel)]="selectedShiftName" placeholder="Select a shift" [ngStyle]="{'padding-left': '10px', 'padding-right': '10px'}"></p-dropdown>
+  <input type="text" pInputText [(ngModel)]="palletCode"   placeholder="Pallet Code" style="width: 200px;"/>
+
+  <div>
+    <p-button label="Search" (click)="fetchAllInfeedDetailsByFilters()"></p-button>
+  <p-button label="Reset" (click)="resetFilters()"></p-button>
+  
+  </div>
+  </div>
+
+
+
+  
+    <p-table #dt  [value]="outfeedMissionRuntimeDetailsList"
+      [globalFilterFields]="['productName', 'palletCode', 'skuCode', 'quantity']" [rows]="10" [paginator]="true"
+      styleClass="p-datatable-gridlines" [scrollable]="true" scrollHeight="500px" [resizableColumns]="true"
+      [exportHeader]="'customExportHeader'" [rowHover]="true">
+  
+  
+      <ng-template pTemplate="caption">
+        <div class="flex">             
+          <p-iconField iconPosition="left" class="ml-auto">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input 
+              pInputText 
+              type="text" 
+              (input)="applyGlobalFilter($event)" 
+              placeholder="  Search keyword"
+              style="width: 200px;" />
+              </p-iconField>
+           
+              </div>
+              </ng-template>
+  
+  
+      <ng-template pTemplate="header">
+        <tr role="row">
+          <th>Sr No</th>
+          <th pSortableColumn="palletCode">Pallet Code<p-sortIcon field="palletCode" /></th>
+          <th pSortableColumn="productName">Product Name<p-sortIcon field="productName" /></th>
+          <th pSortableColumn="productVariantCode">Core Size<p-sortIcon field="productName" /></th>
+          <th pSortableColumn="destination">Destination <p-sortIcon field="destination" /></th>
+          <th pSortableColumn="quantity">Quantity<p-sortIcon field="quantity" /></th>
+          <th pSortableColumn="floorName">Floor Name<p-sortIcon field="palletCode" /></th>
+          <th pSortableColumn="rackColumn">Rack Column<p-sortIcon field="quantity" /></th>
+          <th pSortableColumn="positionName">Nomenclature<p-sortIcon field="productName" /></th>
+          <th pSortableColumn="shiftName">Shift Name<p-sortIcon field="palletCode" /></th>    
+          <th pSortableColumn="palletStatusName">Pallet Status<p-sortIcon field="quantity" /></th>
+          <th pSortableColumn="cdatetime">Mission CreatedTime <p-sortIcon field="productName" /></th>
+          <th pSortableColumn="outfeedMissionStatus">Mission Status<p-sortIcon field="palletCode" /></th>
+          <th pSortableColumn="outfeedMissionStartDatetime">Mission StartTime<p-sortIcon field="skuCode" /></th>
+          <th pSortableColumn="outfeedMissionEndDatetime">MissionEndTime<p-sortIcon field="quantity" /></th>
+        </tr>
+      </ng-template>
+  
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ rowData['palletCode'] }}</td>
+          <td>{{ rowData['productName'] }}</td>
+          <td>{{ rowData['productVariantCode'] }}</td>
+          <td>{{ rowData['destination'] }}</td>
+          <td>{{ rowData['quantity'] }}</td>
+          <td>{{ rowData['floorName'] }}</td>
+          <td>{{ rowData['rackColumn'] }}</td>
+          <td>{{ rowData['positionName'] }}</td>
+          <td>{{ rowData['shiftName'] }}</td>
+          <td>{{ rowData['palletStatusName'] }}</td>
+          <td>{{ rowData['cdatetime'] }}</td>
+          <!-- <td>{{ rowData['infeedMissionStatus'] }}</td> -->
+          <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="rowData['outfeedMissionStatus']" [severity]="getSeverity(rowData['outfeedMissionStatus'])" />
+          </td>
+          <td>{{ rowData['outfeedMissionStartDatetime'] }}</td>
+          <td>{{ rowData['outfeedMissionEndDatetime'] }}</td>
+     
+        </tr>
+      </ng-template>
+    </p-table>
+  
+  
+    <!-- <p-dialog [(visible)]="productDialog" [style]="{ width: '450px' }" header="Product Details" [modal]="true"
+      styleClass="p-fluid">
+      <ng-template pTemplate="content">
+       
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" pInputText id="name" [(ngModel)]="product.productName" required autofocus />
+          <small class="p-error" *ngIf="submitted && !product.productName">
+            Name is required.
+          </small>
+        </div>
+   
+   
+      </ng-template>
+  
+      <ng-template pTemplate="footer">
+      </ng-template>
+    </p-dialog> -->
+  
+  
+  
+  
+  

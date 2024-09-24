@@ -1,0 +1,285 @@
+
+<p-toolbar>
+    <div class="p-toolbar-group-start">
+
+    </div>
+    <div class="p-toolbar-group-center">
+        <h2 class="m-0">Master User Details</h2>
+    </div>
+    <div class="p-toolbar-group-end">
+        <p-button pRipple severity="success" label="New" icon="pi pi-plus" class="mr-2" 
+        (click)="openAddUserDialog()" />
+    </div>
+</p-toolbar>
+<!-----------Table----->
+
+  <p-table #dt [value]="masterUserDetailsTableList"
+    [globalFilterFields]="['userTitle', 'firstName', 'lastName', 'userName','personalId','contactNumber','emailId','roleName']" [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" styleClass="p-datatable-gridlines" [scrollable]="true"
+    scrollHeight="600px" [resizableColumns]="true" [exportHeader]="'customExportHeader'" [rowHover]="true">
+
+    <ng-template pTemplate="caption">
+        <div class="flex">             
+          <p-iconField iconPosition="left" class="ml-auto">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input 
+              pInputText 
+              type="text" 
+              (input)="applyGlobalFilter($event)" 
+              placeholder="  Search keyword"
+              style="width: 200px;" />
+              </p-iconField>
+           
+              </div>
+              </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr role="row">
+            <th>Sr No</th>
+            <th pSortableColumn="userTitle">User Title<p-sortIcon field="userTitle" /></th>
+            <th pSortableColumn="firstName">First Name<p-sortIcon field="palletCode" /></th>
+            <th pSortableColumn="lastName">Last Name<p-sortIcon field="lastName" /></th>
+            <th pSortableColumn="userName">User Name<p-sortIcon field="userName" /></th>
+            <th pSortableColumn="personalId">Personal Id<p-sortIcon field="personalId" /></th>
+            <th pSortableColumn="contactNumber">Contact Number<p-sortIcon field="contactNumber" /></th>
+            <th pSortableColumn="emailId">Email Id<p-sortIcon field="emailId" /></th>
+            <th pSortableColumn="roleName">Role Name<p-sortIcon field="roleName" /></th>
+            <th pSortableColumn="userImage">User Imag<p-sortIcon field="userImag" /></th>
+            <th>Action</th>
+
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+            <td class="font-size">{{ rowIndex + 1 }}</td>
+            <td class="font-size">{{ rowData['userTitle'] }}</td>
+            <td class="font-size">{{ rowData['firstName'] }}</td>
+            <td class="font-size">{{ rowData['lastName'] }}</td>
+            <td class="font-size">{{ rowData['userName'] }}</td>
+            <td class="font-size">{{ rowData['personalId'] }}</td>
+            <td class="font-size">{{ rowData['contactNumber'] }}</td>
+            <td class="font-size">{{ rowData['emailId'] }}</td>
+            <td class="font-size">{{ rowData['roleName'] }}</td>
+            <td class="font-size"> 
+                <img src="{{rowData.userPhotoImageIn64Base}}" alt="Red dot"
+                style="height: 50px; width: 50px;"></td>
+            <td>
+                <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="false" [outlined]="false"
+                    severity="success" (click)="editMasterUserDetails(rowData)" />
+                <p-button pRipple icon="pi pi-trash" severity="danger" [rounded]="false" [outlined]="false"
+                    (click)="deleteMasterUserDetailsRow(rowData)" />
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-------------------------------------------Add Model Form------------------->
+<form #userForm="ngForm">
+    <p-dialog [(visible)]="addUserDialog" [style]="{ width: '550px',height:'600%' }" header="Add Master User Details" [modal]="true"
+        styleClass="p-fluid">
+        <ng-template pTemplate="content">
+           
+            <div class="field">
+                <label for="userTitle">User Title :</label>
+                <p-dropdown  class="width:200%" name="userTitle" [options]="title" [(ngModel)]="addMasterUser.userTitle"  #userTitle="ngModel" placeholder="Select a Title" ></p-dropdown>
+            
+            </div>
+            <div class="field">
+                <label for="firstName">First Name :</label>
+                <input type="text" pInputText id="firstName" [(ngModel)]="addMasterUser.firstName" required
+                    name="firstName" #firstName="ngModel" autofocus />
+                <small class="p-error" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                    First Name is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="lastName">Last Name :</label>
+                <input type="text" pInputText id="lastName" [(ngModel)]="addMasterUser.lastName" required
+                    name="lastName" #lastName="ngModel" autofocus />
+                <small class="p-error" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    Last Name is required.
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="userName">User Name:</label>
+                <input type="text" pInputText id="userName" [(ngModel)]="addMasterUser.userName" required
+                    name="userName" #userName="ngModel" autofocus />
+                <small class="p-error" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                    User Name is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="userPassword">Password:</label>
+                <input type="text" pInputText id="userName" [(ngModel)]="addMasterUser.userPassword" required
+                    name="userPassword" #userPassword="ngModel" autofocus />
+                <small class="p-error" *ngIf="userPassword.invalid && (userPassword.dirty || userPassword.touched)">
+                    Password is required.
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="personalId">Personal Id:</label>
+                <input type="text" pInputText id="userName" [(ngModel)]="addMasterUser.personalId" required
+                    name="personalId" #personalId="ngModel" />
+                <small class="p-error" *ngIf="personalId.invalid && (personalId.dirty || personalId.touched)">
+                    Personal Id required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="text" pInputText id="contactNumber" [(ngModel)]="addMasterUser.contactNumber" required
+                    name="contactNumber" #contactNumber="ngModel" autofocus pattern="^[0-9]{1,10}$" maxlength="10"
+                    (keypress)="validateNumber($event)" />
+                <small class="p-error" *ngIf="contactNumber.invalid && (contactNumber.dirty || contactNumber.touched)">
+                    Contact Number must be up to 10 digits only.
+                </small>
+            </div>
+            
+            
+            
+
+            <!-- <div class="field">
+                <label for="emailId">Email Id:</label>
+                <input type="text" pInputText id="userName" [(ngModel)]="addMasterUser.emailId" required
+                    name="emailId" #emailId="ngModel" autofocus />
+                <small class="p-error" *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)">
+                    Email Id is required.
+                </small>
+            </div> -->
+            <div class="field">
+                <label for="emailId">Email Id:</label>
+                <input type="text" pInputText id="emailId" [(ngModel)]="addMasterUser.emailId" required name="emailId"
+                    #emailId="ngModel" autofocus pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" />
+                <small class="p-error" *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)">
+                    <ng-container *ngIf="emailId.errors?.['required']">Email Id is required.</ng-container>
+                    <ng-container *ngIf="emailId.errors?.['pattern']">Email Id must be a valid email
+                        address.</ng-container>
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="userTitle">Roll Name:</label>
+                <p-dropdown class="width:200%" [options]="statuses" name="roleName" [(ngModel)]="addMasterUser.roleName"  #roleName="ngModel" placeholder="Select a Role Name" ></p-dropdown>
+                <!-- <label for="roleName">Roll Name:</label>
+                <input type="text" pInputText id="roleName" [(ngModel)]="addMasterUser.roleName" required
+                    name="roleName" #roleName="ngModel" autofocus />
+                <small class="p-error" *ngIf="roleName.invalid && (roleName.dirty || roleName.touched)">
+                    Role Name is required.
+                </small> -->
+            </div>
+            <div class="field">
+                <label for="Photo"> Photo:</label>
+                <img class="user-photo" [src]="imageSrc" alt="Red dot">
+                <input class="input-user-photo" type="file" id="editUserImage" name="editUserImage"
+                    (change)="userAddFileSelected($event)" onclick="this.value = null" accept="image/png,image/jpeg">
+                    
+            </div>
+
+
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+            <p-button pRipple label="Save" icon="pi pi-check" [text]="true"
+                (click)="addMasterUserDetails(addMasterUser)" [disabled]="userForm.invalid" />
+        </ng-template>
+
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+</form>
+<p-toast />
+
+<!------------------------------Edit model form---------------------->
+<form #userForm="ngForm">
+    <p-dialog [(visible)]="userDialog" [style]="{ width: '550px',height:'400%' }" header="Edit Master User Details" [modal]="true"
+        styleClass="p-fluid">
+        <ng-template pTemplate="content">
+
+            <div class="field">
+                <label for="userTitle">User Title :</label>
+                <p-dropdown  class="width:200%" name="userTitle" [options]="title" [(ngModel)]="editUserDetailsInstance.userTitle"  #userTitle="ngModel" placeholder="Select a Title" ></p-dropdown>
+            
+            </div>
+            <div class="field">
+                <label for="firstName">first Name:</label>
+                <input type="text" pInputText id="firstName" [(ngModel)]="editUserDetailsInstance.firstName" required
+                    name="firstName" #firstName="ngModel" autofocus />
+                <small class="p-error" *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                    First Name is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="lastName">Last Name:</label>
+                <input type="text" pInputText id="lastName" [(ngModel)]="editUserDetailsInstance.lastName" required name="lastName"
+                    #lastName="ngModel" autofocus />
+                <small class="p-error" *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    Last Name is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="userName">User Name:</label>
+                <input type="text" pInputText id="userName" [(ngModel)]="editUserDetailsInstance.userName" required name="userName"
+                    #userName="ngModel" autofocus />
+                <small class="p-error" *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                    User Name is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="contactNumber"> contactNumber:</label>
+                <input type="text" pInputText id="contactNumber" [(ngModel)]="editUserDetailsInstance.contactNumber" required
+                    name="contactNumber" #contactNumber="ngModel" autofocus />
+                <small class="p-error" *ngIf="contactNumber.invalid && (contactNumber.dirty || contactNumber.touched)">
+                    Contact Number is required.
+                </small>
+            </div>
+            <div class="field">
+                <label for="emailId"> Email Id:</label>
+                <input type="text" pInputText id="emailId" [(ngModel)]="editUserDetailsInstance.emailId" required name="emailId"
+                    #emailId="ngModel" autofocus />
+                <small class="p-error" *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)">
+                    Email Id is required.
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="roleName"> Role Name:</label>
+                <p-dropdown  [options]="statuses" name="roleName" [(ngModel)]="editUserDetailsInstance.roleName"  #roleName="ngModel" placeholder="Select a Role Name" ></p-dropdown>
+               
+            </div>
+
+            <div class="field">
+                <label for="roleName"> Photo:</label>
+                <img class="user-photo" [src]="editImageSrc" alt="Red dot">
+                <input class="input-user-photo" type="file" id="editUserImage" name="editUserImage"
+                    (change)="userEditFileSelected($event)" onclick="this.value = null" accept="image/png,image/jpeg">
+            </div>
+
+
+            
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+            <p-button pRipple label="Save" icon="pi pi-check" [text]="true" (click)="showConfirmationDialog = true"
+                [disabled]="userForm.invalid" />
+        </ng-template>
+
+    </p-dialog>
+    <p-confirmDialog [style]="{ width: '450px' }" />
+</form>
+
+
+<p-dialog [(visible)]="showConfirmationDialog" [style]="{ width: '350px' }" header="Confirmation" [modal]="true"
+    styleClass="p-fluid">
+    <hr>
+    <ng-template pTemplate="content">
+        <p>Are you sure?</p>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideConformationDialog()" />
+        <p-button pRipple label="Submit" icon="pi pi-check" [text]="true" (click)="submitForm()" />
+    </ng-template>
+</p-dialog>
