@@ -1,0 +1,122 @@
+/* Basic Reset */
+body, h2, h5, input, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Toolbar Styles */
+.compact-toolbar {
+  background-color: #007bff;
+  color: white;
+  padding: 0.5rem;
+  border-bottom: 1px solid #0056b3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+/* Container Styles */
+.container {
+  max-width: 90%;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+/* Form and Layout Styles */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.col-md-6, .col-lg-4 {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.form-group {
+  background: #fff;
+  border-radius: 4px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d6dadf;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.p-button {
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Table Styles */
+.p-datatable-gridlines {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.75rem;
+  margin-top: 1rem;
+}
+
+.p-table thead th {
+  background-color: #e9ecef;
+  font-weight: bold;
+  border-bottom: 1px solid #dee2e6;
+  padding: 10px;
+  text-align: left; 
+}
+
+.p-table tbody tr {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.p-table tbody tr:nth-child(even) {
+  background-color: #f1f3f5;
+}
+
+.p-table tbody tr:hover {
+  background-color: #e2e6ea;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.search-input {
+  width: 150px;
+  padding: 0.5rem;
+  border: 1px solid #d6dadf;
+  border-radius: 4px;
+}
+
+

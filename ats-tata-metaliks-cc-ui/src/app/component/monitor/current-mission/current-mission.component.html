@@ -1,0 +1,362 @@
+<div class="p-toolbar-group-center">
+  <h1 class="m-0">Current Mission</h1>
+</div>
+<div class="tables-container">
+
+  <!-- Infeed Mission Table -->
+
+  <p-toast />
+  <div class="table-wrapper">
+    <h2 class="m-1">Infeed Mission</h2>
+    <p-table #dt [value]="infeedMissionList"
+      [globalFilterFields]="['infeedMissionId', 'palletCode', 'productName', 'palletStatusName','infeedMissionStatus']"
+      styleClass="p-datatable-gridlines table-no-scroll" [resizableColumns]="true" [exportHeader]="'customExportHeader'"
+      [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr role="row">
+          <th style="width: 5%">Sr No</th>
+          <th style="width: 5%">Pallet Code</th>
+          <th style="width: 5%">Core Size</th>
+          <th pSortableColumn="palletStatusName" style="width: 15%">Pallet Status<p-sortIcon field="palletStatusName" />
+          </th>
+          <th pSortableColumn="infeedMissionStatus" style="width: 15%">Status<p-sortIcon field="infeedMissionStatus" />
+          </th>
+          <th style="width: 5%">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ rowData['palletCode'] }}</td>
+          <!-- <td>{{ rowData['productId'] }}</td> -->
+          <td>{{ rowData['productName'] }}</td>
+          <td>{{ rowData['palletStatusName'] }}</td>
+          <!-- <td>{{ rowData['positionName'] }}</td> -->
+          <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="rowData['infeedMissionStatus']" [severity]="getSeverity(rowData['infeedMissionStatus'])" />
+          </td>
+          <td>
+            <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="false" [outlined]="false" severity="success"
+              (click)="editInfeedMissionDetails(rowData)" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <!-- Outfeed Mission Table -->
+
+  <p-toast />
+  <div class="table-wrapper">
+    <h2 class="m-2">Outfeed Mission</h2>
+    <p-table #dt [value]="outfeedMissionList"
+      [globalFilterFields]="['outfeedMissionId', 'palletCode','productId', 'productName', 'quantity', 'positionName','outfeedMissionStatus']"
+      styleClass="p-datatable-gridlines table-no-scroll" [resizableColumns]="true" [scrollable]="true"
+      [exportHeader]="'customExportHeader'" [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr role="row">
+          <th style="width: 5%">Sr No</th>
+          <th style="width: 15%">Pallet Code</th>
+          <th style="width: 15%">Core Size</th>
+          <th pSortableColumn="palletStatusName" style="width: 15%">Pallet Status<p-sortIcon field="palletStatusName" />
+          </th>
+          <th pSortableColumn="outfeedMissionStatus" style="width: 15%">Status<p-sortIcon
+              field="outfeedMissionStatus" /></th>
+          <th style="width: 5%">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ rowData['palletCode'] }}</td>
+          <td>{{ rowData['productName'] }}</td>
+          <td>{{ rowData['palletStatusName'] }}</td>
+          <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="rowData['outfeedMissionStatus']"
+              [severity]="getSeverity(rowData['outfeedMissionStatus'])" />
+          </td>
+          <td>
+            <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="false" [outlined]="false" severity="success"
+              (click)="editOutfeedMissionDetails(rowData)" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
+  <!-- Transfer Pallet Mission Table -->
+
+  <p-toast />
+  <div class="table-wrapper">
+    <h2 class="m-2">Transfer Mission</h2>
+    <p-table #dt [value]="transferMissionList"
+      [globalFilterFields]="['outfeedMissionId', 'palletCode','productId', 'productName', 'quantity', 'positionName','transferMissionStatus']"
+      styleClass="p-datatable-gridlines table-no-scroll" [resizableColumns]="true" [scrollable]="true"
+      [exportHeader]="'customExportHeader'" [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr role="row">
+          <th style="width: 5%">Sr No</th>
+          <th style="width: 15%">Pallet Code</th>
+          <th style="width: 15%">Core Size</th>
+          <th pSortableColumn="palletStatusName" style="width: 15%">Pallet Status<p-sortIcon field="palletStatusName" />
+          </th>
+          <th pSortableColumn="transferMissionStatus" style="width: 15%">Status<p-sortIcon
+              field="transferMissionStatus" /></th>
+          <th style="width: 5%">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ rowData['palletCode'] }}</td>
+          <td>{{ rowData['productName'] }}</td>
+          <td>{{ rowData['palletStatusName'] }}</td>
+          <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="rowData['transferMissionStatus']"
+              [severity]="getSeverity(rowData['transferMissionStatus'])" />
+          </td>
+          <td>
+            <p-button pRipple icon="pi pi-pencil" class="mr-2" [rounded]="false" [outlined]="false" severity="success"
+              (click)="editTransferMissionDetails(rowData)" />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
+<!-- Edit Infeed Mission Runtime Details Modal -->
+<form #productForm="ngForm">
+  <p-dialog [(visible)]="infeedDialog" [style]="{ width: '800px' }"  [style]="{ height: '300px' }" header="Edit Infeed Status" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="field">
+
+
+        <form #updateInfeedMissionRuntimeDetailsModalForm="ngForm"
+          (ngSubmit)="editInfeedMissionRuntimeDetails(editInfeedMissionRuntimeDetailsInstance)" novalidate>
+
+          <div class="row">
+            <div class="col-5">
+              <p class="required" style="text-align: center;">Status</p>
+            </div>
+            <div>
+              <select name="editInfeedMissionStatusName" id="editInfeedMissionStatusId"
+                #editInfeedMissionStatusRef="ngModel"
+                [(ngModel)]="editInfeedMissionRuntimeDetailsInstance.infeedMissionStatus"
+                (change)="selectEditInfeedMissionStatusChangeFromDropDownList(editInfeedMissionStatusRef.value)"
+                required>
+                <option value="" disabled selected>Select Status</option>
+                <ng-container *ngFor="let mission of infeedMissionList">
+                  <ng-container
+                    *ngIf="mission.infeedMissionStatus === 'IN_PROGRESS' && mission.infeedMissionId === editInfeedMissionRuntimeDetailsInstance.infeedMissionId">
+                    <option value="COMPLETED">COMPLETED</option>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="mission.infeedMissionStatus === 'READY' && mission.infeedMissionId === editInfeedMissionRuntimeDetailsInstance.infeedMissionId">
+                    <option value="ABORT">ABORT</option>
+                  </ng-container>
+                </ng-container>
+              </select>
+              <div
+                *ngIf="editInfeedMissionStatusRef.invalid && (editInfeedMissionStatusRef.dirty || editInfeedMissionStatusRef.touched)"
+                class="error">
+                <div *ngIf="editInfeedMissionStatusRef.errors?.['required']">
+                  <p class="text-danger"><i class="bi bi-exclamation-circle-fill"></i>Please Select Status</p>
+
+                  <small class="p-error text"
+                    *ngIf="editInfeedMissionStatusRef.invalid && (editInfeedMissionStatusRef.dirty || editInfeedMissionStatusRef.touched)">
+                    Status.
+                  </small>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+      <p-button pRipple label="Save" icon="pi pi-check" [text]="true" (click)="showConfirmationDialog1 = true"
+        [disabled]="productForm.invalid" />
+    </ng-template>
+  </p-dialog>
+  <p-confirmDialog [style]="{ width: '450px' }" />
+
+
+</form>
+
+
+<!-- Edit Outfeed Mission Runtime Details Modal -->
+<form #productForm="ngForm">
+  <p-dialog [(visible)]="outfeedDialog" [style]="{ width: '800px' }"  [style]="{ height: '300px' }" header="Edit Outfeed Status" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="field">
+
+
+        <form #updateOutfeedMissionRuntimeDetailsModalForm="ngForm"
+          (ngSubmit)="editOutfeedMissionRuntimeDetails(editOutfeedMissionRuntimeDetailsInstance)" novalidate>
+
+          <div class="row">
+            <div class="col-5">
+              <p class="required">Status</p>
+            </div>
+            <div>
+              <select name="editOutfeedMissionStatusName" id="editOutfeedMissionStatusId"
+                #editOutfeedMissionStatusRef="ngModel"
+                [(ngModel)]="editOutfeedMissionRuntimeDetailsInstance.outfeedMissionStatus"
+                (change)="selectEditOutfeedMissionStatusChangeFromDropDownList(editOutfeedMissionStatusRef.value)"
+                required>
+                <option value="" disabled selected>Select Status</option>
+                <ng-container *ngFor="let mission of outfeedMissionList">
+                  <ng-container
+                    *ngIf="mission.outfeedMissionStatus === 'IN_PROGRESS' && mission.outfeedMissionId === editOutfeedMissionRuntimeDetailsInstance.outfeedMissionId">
+                    <option value="COMPLETED">COMPLETED</option>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="mission.outfeedMissionStatus === 'READY' && mission.outfeedMissionId === editOutfeedMissionRuntimeDetailsInstance.outfeedMissionId">
+                    <option value="ABORT">ABORT</option>
+                  </ng-container>
+                </ng-container>
+              </select>
+              <div
+                *ngIf="editOutfeedMissionStatusRef.invalid && (editOutfeedMissionStatusRef.dirty || editOutfeedMissionStatusRef.touched)"
+                class="error">
+                <div *ngIf="editOutfeedMissionStatusRef.errors?.['required']">
+                  <p class="text-danger"><i class="bi bi-exclamation-circle-fill"></i>Please Select Status</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+      <p-button pRipple label="Save" icon="pi pi-check" [text]="true" (click)="showConfirmationDialog2 = true"
+        [disabled]="productForm.invalid" />
+    </ng-template>
+  </p-dialog>
+  <p-confirmDialog [style]="{ width: '450px' }" />
+
+
+</form>
+
+
+<!-- Edit Transfer Pallet Mission Runtime Details Modal -->
+<form #productForm="ngForm">
+  <p-dialog [(visible)]="transferDialog" [style]="{ width: '800px' }"  [style]="{ height: '300px' }" header="Edit Transfer Mission Status" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+      <div class="field">
+
+
+        <form #updateTransferMissionRuntimeDetailsModalForm="ngForm"
+          (ngSubmit)="editTransferMissionRuntimeDetails(editTransferMissionRuntimeDetailsInstance)" novalidate>
+
+          <div class="row">
+            <div class="col-5">
+              <p class="required" style="text-align: center;">Status</p>
+            </div>
+            <div>
+              <select name="editTransferPalletMissionStatusName" id="editTransferPalletMissionStatusId"
+                #editTransferPalletMissionStatusRef="ngModel"
+                [(ngModel)]="editTransferMissionRuntimeDetailsInstance.transferMissionStatus"
+                (change)="selectEditTransferPalletMissionStatusChangeFromDropDownList(editTransferPalletMissionStatusRef.value)"
+                required>
+                <option value="" disabled selected>Select Status</option>
+                <ng-container *ngFor="let mission of transferMissionList">
+                  <ng-container
+                    *ngIf="mission.transferMissionStatus === 'IN_PROGRESS' && mission.transferPalletMissionRuntimeDetailsId === editTransferMissionRuntimeDetailsInstance.transferPalletMissionRuntimeDetailsId">
+                    <option value="COMPLETED">COMPLETED</option>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="mission.transferMissionStatus === 'READY' && mission.transferPalletMissionRuntimeDetailsId === editTransferMissionRuntimeDetailsInstance.transferPalletMissionRuntimeDetailsId">
+                    <option value="ABORT">ABORT</option>
+                  </ng-container>
+                </ng-container>
+              </select>
+              <div
+                *ngIf="editTransferPalletMissionStatusRef.invalid && (editTransferPalletMissionStatusRef.dirty || editTransferPalletMissionStatusRef.touched)"
+                class="error">
+                <div *ngIf="editTransferPalletMissionStatusRef.errors?.['required']">
+                  <p class="text-danger"><i class="bi bi-exclamation-circle-fill"></i>Please Select Status</p>
+
+                  <small class="p-error text"
+                    *ngIf="editTransferPalletMissionStatusRef.invalid && (editTransferPalletMissionStatusRef.dirty || editTransferPalletMissionStatusRef.touched)">
+                    Status.
+                  </small>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+      <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+      <p-button pRipple label="Save" icon="pi pi-check" [text]="true" (click)="showConfirmationDialog3 = true"
+        [disabled]="productForm.invalid" />
+    </ng-template>
+  </p-dialog>
+  <p-confirmDialog [style]="{ width: '450px' }" />
+
+
+</form>
+
+
+
+<!-- Confirmation Dialog for Infeed Mission-->
+<p-dialog [(visible)]="showConfirmationDialog1" [style]="{ width: '350px' }" header="Confirmation" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <p>Are you sure?</p>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+    <p-button pRipple label="Submit" icon="pi pi-check" [text]="true" (click)="submitForm()" />
+  </ng-template>
+</p-dialog>
+
+
+<!-- Confirmation Dialog for Outfeed Mission -->
+<p-dialog [(visible)]="showConfirmationDialog2" [style]="{ width: '350px' }" header="Confirmation" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <p>Are you sure?</p>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+    <p-button pRipple label="Submit" icon="pi pi-check" [text]="true" (click)="submitForm2()" />
+  </ng-template>
+</p-dialog>
+
+
+
+<!-- Confirmation Dialog for Transfer Pallet Mission -->
+<p-dialog [(visible)]="showConfirmationDialog3" [style]="{ width: '350px' }" header="Confirmation" [modal]="true"
+  styleClass="p-fluid">
+  <ng-template pTemplate="content">
+    <p>Are you sure?</p>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+    <p-button pRipple label="Submit" icon="pi pi-check" [text]="true" (click)="submitForm3()" />
+  </ng-template>
+</p-dialog>

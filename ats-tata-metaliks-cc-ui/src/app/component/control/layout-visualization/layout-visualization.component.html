@@ -1,0 +1,1214 @@
+<div class="col-sm-8">
+  <h4 class="heading  main-heading"><img class="blink" src="assets/live-icon.png"
+      style="height: 50px;"><span>Live</span> 2D AS/RS Visualization
+  </h4>
+
+</div>
+<div class="col-lg-8  legend">
+  <tr>
+    <div class="stored-cell"></div>
+    <td class="legend-cells">Stored Cells</td>
+    <div class="allocated-cell"></div>
+    <td class="legend-cells">Allocated Positions</td>
+    <div class="empty-cell"></div>
+    <td class="legend-cells">Empty Cells</td>
+    <td><i class="pi pi-lock custom-icon"></i></td>
+
+    <td class="legend-cells">Lock Cells</td>
+    <div class="outfeed-cmd-cell"></div>
+    <td class="legend-cells">Outfeed Command</td>
+    <div class="empty-pallet"></div>
+    <td class="legend-cells">Empty Pallet</td>
+    <div class="equipment"></div>
+    <td class="legend-cells">Equipment</td>
+
+  </tr>
+  <hr>
+</div>
+
+
+
+
+
+<div class="layout-border  ">
+  <label class="area-name-style"></label>
+  <div class="row ">
+
+
+    <!--<div class="row" >-->
+    <!-- <div class="col-10" class="palletRackPosition"> -->
+    <tr class="grid">
+      <td class="columnCountpositions"
+        *ngFor="let columnCount of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]; index as i">
+
+        <div>
+          <div class="col-2 columnCountpalletPositions" [ngClass]="{ 'gap': i < 26 }">
+            {{columnCount}}
+          </div>
+        </div>
+      </td>
+    </tr>
+    <!--<table>-->
+
+
+    <!-- A1L1 -->
+    <tr class="grid">
+      <td class="positions" *ngFor="let rackColumnCount of masterRackPositionListLSIDE;let i = index">
+        <!-- using above rackColumnCount position array to iterate-->
+        <div *ngFor="let columnCount of rackColumnCount.position;let j=index">
+
+
+
+          <!-- <div
+              *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1;"
+              class="col-2 palletPositions"
+              (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+              data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+              style="background-color: rgb(80, 192, 80);">
+
+            </div> -->
+
+
+
+
+
+
+
+
+
+
+          <div
+            *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+            class="col-2"
+            (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+            data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+              aria-hidden="true" style="font-size: 27px;"></i>
+
+          </div>
+          <div
+            *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+            class="col-2 palletPositions"
+            (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+            data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+            style="font-size: 27px; background-color:#FFD966">
+
+          </div>
+
+
+        </div>
+      </td>
+    </tr>
+
+
+    <!-- </table>-->
+    <!--</div>-->
+
+
+    <table class="floor-section col-10">
+      <tr class="grid">
+        <!-- <td *ngFor="let columnCount of stackerPositionList;index as i"> -->
+        <div class="test">
+          <div class="stacker-position">
+            <div><img src="assets/Equipment-image.jpg" style="height: 30px; width: 40px;padding-bottom: 4px;">
+
+            </div>
+          </div>
+        </div>
+
+        <!-- </td> -->
+      </tr>
+
+    </table>
+
+    <tr>
+      <div>level-6&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListLSIDE6; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-6</div>
+    </tr>
+
+    <tr>
+      <div>level-5&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListLSIDE5; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-5</div>
+    </tr>
+
+    <tr>
+      <div>level-4&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListLSIDE4; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,true)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-4</div>
+    </tr>
+
+    <tr>
+      <div>level-3&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListLSIDE3; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1 && columnCount.isMaterialLoaded==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-3</div>
+    </tr>
+
+    <tr>
+      <div>level-2&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListLSIDE2; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-2</div>
+    </tr>
+
+    <tr>
+      <div>level-1&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListLSIDE1; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px; background-color:  rgb(40, 134, 138);;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-1</div>
+    </tr>
+
+
+
+
+    <hr>
+
+    <hr>
+
+
+    <tr>
+      <div>level-5&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListRSIDE5; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,true)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-5</div>
+    </tr>
+
+    <tr>
+      <div>level-4&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListRSIDE4; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,true)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-4</div>
+    </tr>
+
+    <tr>
+      <div>level-3&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListRSIDE3; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, false, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-3</div>
+    </tr>
+
+    <tr>
+      <div>level-2&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListRSIDE2; let i = index">
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 && columnCount.isManualDispatch==0 && columnCount.positionIsActive==1"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-2</div>
+    </tr>
+
+    <tr>
+      <div>level-1&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <td class="positions" *ngFor="let columnCount of masterPositionListRSIDE1; let i = index">
+
+
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==1"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(80, 192, 80); cursor: pointer;">
+
+        </div>
+        <div class="col-2 empty-cell"
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==1;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature, columnCount.positionId, columnCount.st1PositionName, false, false, true, false)"
+          style="background-color: rgb(10, 134, 192); cursor: pointer;">
+
+        </div>
+
+        <div class="col-2 empty-cell" *ngIf="columnCount.positionIsActive==0;"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,true,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="pi pi-lock custom-icon1"
+            aria-hidden="true"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==0 && columnCount.isManualDispatch==0 && columnCount.isMaterialLoaded==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,true,false)"
+          style="background-color: rgb(182, 8, 176);">
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==0 && columnCount.positionIsAllocated==0;"
+          class="col-2 empty-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,true,true,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal" style="background-color: white;">
+
+        </div>
+
+        <div
+          *ngIf="columnCount.positionIsActive==1 && columnCount.emptyPalletPosition==1 && columnCount.isManualDispatch==1 ;"
+          class="col-2"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          data-bs-toggle="modal" data-bs-target="#openSelectedPalletCodeModal"><i class="bi bi-x-square-fill"
+            aria-hidden="true" style="font-size: 27px;"></i>
+
+        </div>
+        <div
+          *ngIf="columnCount.emptyPalletPosition==1 && columnCount.positionIsAllocated==1 &&  columnCount.positionIsActive==1"
+          class="col-2 allocated-cell"
+          (click)="fetchCurrentPalletStockDetailsByPositionId($event,columnCount.nomenclature,columnCount.positionId,columnCount.st1PositionName,false,false,false,false)"
+          style="font-size: 27px; background-color:#FFD966">
+
+        </div>
+      </td>
+      <div>&nbsp;&nbsp;&nbsp;&nbsp;level-1</div>
+    </tr>
+
+    <table class="floor-section col-10">
+      <tr class="grid">
+
+        <div class="test">
+          <div class="stacker-position">
+            <div><img src="assets/Equipment-image.jpg" style="height: 30px; width: 40px;padding-bottom: 4px;">
+
+            </div>
+          </div>
+        </div>
+
+      </tr>
+
+    </table>
+
+
+
+
+    <tr class="grid">
+      <td class="columnCountpositions"
+        *ngFor="let columnCount of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26]; index as i">
+
+        <div>
+          <div class="col-2 columnCountpalletPositions" [ngClass]="{ 'gap': i < 26 }">
+            {{columnCount}}
+          </div>
+        </div>
+      </td>
+    </tr>
+  </div>
+</div>
+
+
+
+
+
+<!--new-->
+
+<!-- <p-dialog header="Bin Location" [(visible)]="displayModal" modal="modal" [closable]="true">
+  <div class="field">
+    <label for="name">Core Size :</label> -->
+
+
+
+
+<p-toast />
+
+<p-dialog header="Bin Location" [(visible)]="displayModal" [style]="{ width: 'auto', height: 'auto' ,margin: '0'}"
+  [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h3 style="margin-bottom: 0;">Bin Location : {{nomenclature}}</h3>
+
+  </ng-template>
+  <hr style="margin: 0;padding: 0;">
+  <ng-template pTemplate="content">
+    <div class="input-line">
+      <label for="palletId">Pallet Code :</label>
+      <input type="text" pInputText id="palletId" [(ngModel)]="palletCode" required autofocus readonly
+        style="margin-left: 20px;" />
+      <label for="coreSize" style="margin-left: 20px;">Core Size : </label>
+      <input type="text" pInputText id="coreSize" [(ngModel)]="coreSize" required autofocus readonly
+        style="margin-left: 20px;" />
+    </div>
+
+
+
+    <br><br>
+    <p-table #dt [value]="currentStockDetailsList" [resizableColumns]="true" [exportHeader]="'customExportHeader'"
+      [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr role="row" class="box1">
+          <th class="box1">Sr No</th>
+          <th class="box1">Core Size</th>
+          <th class="box1">Quantity</th>
+          <th class="box1">Load Date Time</th>
+          <th class="box1">Action</th>
+        </tr>
+      </ng-template>
+      <br>
+      <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+        <tr>
+          <td class="box1">{{ rowIndex + 1 }}</td>
+          <td class="box1">{{ rowData.coreSize }}</td>
+          <td class="box1">{{ rowData.quantity }}</td>
+          <td class="box1">{{ rowData.loadDatetime }}</td>
+          <!-- <td> <i class="pi-pen-to-square penedit" ></i></td> -->
+          <td class="box1">
+            <p-button pRipple icon="pi pi-pen-to-square" class="mr-2" [rounded]="false" [outlined]="false"
+              severity="help" (click)="editCurrentStockDetailsRow(rowData)">
+            </p-button>
+          </td>
+
+
+
+        </tr>
+      </ng-template>
+      <br>
+    </p-table>
+    <br><br>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <hr>
+
+    <ng-container *ngIf="isPositionIsLock==true ||  isPositionIsEmpty==true; else positionIsNotActiveMD">
+      <p-button label="Manual Dispatch" [text]="true" [raised]="true" icon="pi pi-check" [disabled]="true"></p-button>
+    </ng-container>
+    <ng-template #positionIsNotActiveMD>
+      <p-button label="Manual Dispatch" [text]="true" [raised]="true" icon="pi pi-check" [disabled]="false"
+        (click)="openDialog('mannualDispatchPositionModalId')"></p-button>
+    </ng-template>
+
+
+    <ng-container *ngIf="isPositionIsLock==true; else positionIsNotActive">
+      <p-button label="Unlock" [text]="true" [raised]="true" severity="danger"
+        (onClick)="openDialog('unlockPositionModalId')" />
+    </ng-container>
+    <ng-template #positionIsNotActive>
+      <p-button label="Lock" [text]="true" [raised]="true" severity="danger"
+        (onClick)="openDialog('lockPositionModalId')" />
+    </ng-template>
+
+    <p-button label="Fill Data" [text]="true" [raised]="true" severity="success"
+      (onClick)="openDialog('addPositionModalId')" />
+    <!-- <p-button label="Edit" [text]="true" [raised]="true" severity="info"  /> -->
+
+    <ng-container
+      *ngIf="isPositionIsLock==true || isPositionIsEmpty==true || positionIsAllocated==true ; else positionIsNotAllocatedMD">
+      <p-button label="Free Allocated" [text]="true" [raised]="true" severity="warning" [disabled]="true" />
+    </ng-container>
+    <ng-template #positionIsNotAllocatedMD>
+      <p-button label="Free Allocated" [text]="true" [raised]="true" severity="warning" [disabled]="false"
+        (onClick)="openDialog('freeAllocatedPositionModalId')" />
+    </ng-template>
+
+    <p-button label="Delete" [text]="true" [raised]="true" severity="danger"
+      (onClick)="openDialog('deletePositionModalId')" />
+
+
+
+    <!-- <p-button label="Cancel" severity="danger" [outlined]="true" [text]="true" [raised]="true" icon="pi pi-times"
+      (onClick)="cancel()"></p-button> -->
+
+  </ng-template>
+</p-dialog>
+
+
+
+
+
+
+<p-dialog header="Bin Location" [(visible)]="modalVisibility['lockPositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">Bin
+      Location: {{ nomenclature }}</h4>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <div>
+      <label for="lockReason" class="required label-text">Mention the reason</label><br><br>
+      <input type="text" pInputText id="resoanDetails" [(ngModel)]="addReasonName" required autofocus />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success"
+      (click)="lockSelectedPosition();closeDialog('lockPositionModalId')" [disabled]="!addReasonName"></p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" data-bs-dismiss="modal"
+      (onClick)="closeDialog('lockPositionModalId')"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+
+
+<p-dialog header="Bin Location" [(visible)]="modalVisibility['unlockPositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">Bin
+      Location: {{ nomenclature }}</h4>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <div>
+      <label for="lockReason" class="required label-text">Mention the reason</label><br><br>
+      <input type="text" pInputText id="resoanDetails" [(ngModel)]="addReasonName" required autofocus />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success"
+      (click)="unlockSelectedPosition();closeDialog('unlockPositionModalId')" [disabled]="!addReasonName"></p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" data-bs-dismiss="modal"
+      (onClick)="closeDialog('unlockPositionModalId')"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+
+
+<p-dialog header="Bin Location" [(visible)]="modalVisibility['mannualDispatchPositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">Bin
+      Location: {{ nomenclature }}</h4>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <div>
+      <label for="lockReason" class="label-text">Are you sure you want to manually dispatch
+        {{palletCode}} pallet ?
+      </label><br><br>
+
+
+
+    </div>
+    <div class="dropbtn">
+      <p-dropdown [options]="DestinationList" name="selectedDestination" [(ngModel)]="selectedDestination"
+        placeholder="Select a Destination" [ngStyle]="{'padding-left': '10px'}"></p-dropdown>
+
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success"
+      (click)="addCurrentStockDetailsInManualOutFeed(this.currentStockDetailsList[0]);closeDialog('mannualDispatchPositionModalId')"
+      [disabled]="!selectedDestination"></p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" data-bs-dismiss="modal"
+      (onClick)="closeDialog('mannualDispatchPositionModalId')"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+
+
+
+
+<p-dialog header="Bin Location" [(visible)]="modalVisibility['freeAllocatedPositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">Bin
+      Location: {{ nomenclature }}</h4>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <div>
+      <label for="lockReason" class="label-text">Are you sure you want to free allocated {{ binLocation }}
+        ?</label><br><br>
+
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success"
+      (click)="freeAllocateSelectedPosition();closeDialog('freeAllocatedPositionModalId')"></p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" data-bs-dismiss="modal"
+      (onClick)="closeDialog('freeAllocatedPositionModalId')"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+
+<p-dialog header="Bin Location" [(visible)]="modalVisibility['deletePositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">Bin
+      Location: {{ nomenclature }}</h4>
+  </ng-template>
+
+  <ng-template pTemplate="content">
+    <div>
+      <label for="deleteReason" class="label-text">Are you sure you want to delete {{binLocation}} pallet?
+      </label><br><br>
+
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success"
+      (click)="deleteCurrentStockDetailsPositionId();closeDialog('deletePositionModalId')"></p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" data-bs-dismiss="modal"
+      (onClick)="closeDialog('deletePositionModalId')"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+
+
+
+<!-- <p-dialog header="Bin Location" [(visible)]="modalVisibility['addPositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">Bin
+      Location: {{ binLocation }}</h4>
+  </ng-template>
+<hr>
+<br>
+  <ng-template pTemplate="content">
+    <div class="input-line">
+      <div class="input-wrapper">
+        <label for="palletId">Pallet Code :</label>
+        <input type="text" pInputText id="palletId" [(ngModel)]="dispatchCurrentStockDetailsInstance.palletCode"(ngModelChange)="onPalletCodeChange()"  required autofocus style="margin-left: 20px;" />
+       
+        <i class="pi pi-check-circle input-icon" [ngClass]="{'text-success': isValidated}" (click)="validatePalletCode(dispatchCurrentStockDetailsInstance)"></i>
+      </div>
+      <br>
+      <div *ngIf="validationMessage" class="validation-message" >{{ validationMessage }}</div>
+      <br>
+    
+      <label for="coreSize" style="margin-left: 20px;">Core Size : </label>
+      <input type="text" pInputText id="coreSize" [(ngModel)]="dispatchCurrentStockDetailsInstance.coreSize" required autofocus style="margin-left: 20px;" />
+    </div>
+    <div class="input-line">
+      <label for="quantity" style="margin-left: 20px;">Quantity : </label>
+      <input type="text" pInputText id="quantity" [(ngModel)]="dispatchCurrentStockDetailsInstance.quantity" required autofocus style="margin-left: 25px;" />
+    </div>
+  </ng-template>
+<br>
+
+  <ng-template pTemplate="footer">
+    <hr>
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success"
+      (click)="deleteCurrentStockDetailsPositionId();closeDialog('addPositionModalId')"></p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" data-bs-dismiss="modal"
+      (onClick)="closeDialog('addPositionModalId')"></p-button>
+  </ng-template>
+</p-dialog> -->
+
+
+
+<p-dialog header="Bin Location" [(visible)]="modalVisibility['addPositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">Bin
+      Location: {{ nomenclature }}</h4>
+  </ng-template>
+  <hr>
+  <br>
+  <ng-template pTemplate="content">
+    <form [formGroup]="dispatchForm">
+      <div class="input-line">
+        <div class="input-wrapper">
+          <label for="palletId">Pallet Code :</label>
+
+          <input type="text" pInputText id="palletId" formControlName="palletCode"
+            (ngModelChange)="onPalletCodeChange()" required autofocus style="margin-left: 20px;"
+            [(ngModel)]="dispatchCurrentStockDetailsInstance.palletCode" />
+          <i class="pi pi-check-circle input-icon" [ngClass]="{'text-success': isValidated}"
+            (click)="validatePalletCode(dispatchCurrentStockDetailsInstance)"></i>
+
+        </div>
+        <br>
+        <div *ngIf="validationMessage" class="validation-message">{{ validationMessage }}</div>
+        <br>
+
+        <label for="coreSize" style="margin-left: 20px;">Core Size : </label>
+        <input type="text" pInputText id="coreSize" formControlName="coreSize" required autofocus
+          [(ngModel)]="dispatchCurrentStockDetailsInstance.coreSize" style="margin-left: 20px;" />
+      </div>
+      <div class="input-line">
+        <label for="quantity" style="margin-left: 20px;">Quantity : </label>
+        <input type="text" pInputText id="quantity" formControlName="quantity" required autofocus
+          [(ngModel)]="dispatchCurrentStockDetailsInstance.quantity" style="margin-left: 25px;" />
+      </div>
+    </form>
+  </ng-template>
+  <br>
+
+  <ng-template pTemplate="footer">
+    <hr>
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success"
+      [disabled]="!dispatchForm.valid || !isValidated"
+      (click)="addupdateCurrentStockDetailsByPosition(dispatchCurrentStockDetailsInstance); closeDialog('addPositionModalId')"></p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" data-bs-dismiss="modal"
+      (click)="closeDialog('addPositionModalId')"></p-button>
+  </ng-template>
+</p-dialog>
+
+
+
+
+<p-dialog header="Bin Location" [(visible)]="modalVisibility['editPositionModalId']"
+  [style]="{ width: 'auto', height: 'auto', margin: '0' }" [modal]="true" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h4 style="font-size: 1.4rem; font-family: ibm-plex-sans-regular; font-weight: bold; margin-top: 10px;">
+      Bin Location: {{ nomenclature }}
+    </h4>
+  </ng-template>
+  <hr>
+  <br>
+  <ng-template pTemplate="content">
+    <form [formGroup]="dispatchForm">
+      <div class="input-line">
+        <div class="input-wrapper">
+          <label for="palletId">Pallet Code :</label>
+          <input type="text" pInputText id="palletId" formControlName="palletCode" required autofocus readonly
+            style="margin-left: 20px;" [(ngModel)]="dispatchCurrentStockDetailsInstance.palletCode" />
+
+        </div>
+
+        <br>
+        <div *ngIf="validationMessage" class="validation-message">{{ validationMessage }}</div>
+        <br>
+        <label for="coreSize" style="margin-left: 20px;">Core Size : </label>
+        <input type="text" pInputText id="coreSize" formControlName="coreSize" required autofocus
+          [(ngModel)]="dispatchCurrentStockDetailsInstance.coreSize" style="margin-left: 20px;" />
+      </div>
+      <div class="input-line">
+        <label for="quantity" style="margin-left: 20px;">Quantity : </label>
+        <input type="text" pInputText id="quantity" formControlName="quantity" required autofocus
+          [(ngModel)]="dispatchCurrentStockDetailsInstance.quantity" style="margin-left: 25px;" />
+      </div>
+    </form>
+  </ng-template>
+  <br>
+  <ng-template pTemplate="footer">
+    <hr>
+    <p-button label="Submit" icon="pi pi-check" class="p-button-success" [disabled]="!dispatchForm.valid"
+      (click)="updateCurrentStockDetailsByPosition(dispatchCurrentStockDetailsInstance); closeDialog('editPositionModalId')">
+    </p-button>
+    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="closeDialog('editPositionModalId')">
+    </p-button>
+  </ng-template>
+</p-dialog>

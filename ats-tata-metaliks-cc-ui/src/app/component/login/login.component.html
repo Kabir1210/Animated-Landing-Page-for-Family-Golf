@@ -1,0 +1,26 @@
+<div class="login-box">
+  <h2>L O G I N</h2>
+  <form class="login-form" #userloginFrom="ngForm" (ngSubmit)="login()">
+    <div class="user-box">
+      <label>Username</label>
+      <input type="text" [(ngModel)]="userName" name="userName" required placeholder="">
+    </div>
+
+    <div class="user-box">
+      <label>Password</label>
+      <div class="password-container">
+        <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password" required placeholder="" (keyup)="checkCapsLock($event)">
+        <i class="pi" [ngClass]="showPassword ? 'pi-eye' : 'pi-eye-slash'  " (click)="togglePasswordVisibility()" style="cursor: pointer; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);"></i>
+      </div>
+      <p *ngIf="capsLockOn" style="color: white;">*Caps Lock is ON*</p>
+    </div>
+
+    <div class="text"><a href="#">Forgot password?</a></div>
+    <a class="submit" href="#">
+      <span></span>
+      <span></span>
+      <span></span>
+      <button type="submit" [disabled]="!userloginFrom.valid" value="submit">S U B M I T</button>
+    </a>
+  </form>
+</div>

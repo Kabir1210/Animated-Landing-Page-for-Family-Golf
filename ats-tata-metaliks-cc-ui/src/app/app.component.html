@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: -8px;
+            /* padding: 0; */
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div *ngIf="isLoggedIn; else loginBlock">
+        <div class="header">
+            <p-avatar image="assets/ats-logo.png" styleClass="flex align-items-center justify-content-center mr-2"
+                size = "xlarge">
+            </p-avatar>
+            <h2 style="color:rgb(227, 227, 236);">The Clever Warehouse</h2>
+
+           
+
+
+            <p-menubar [model]="items" class="my-menubar"></p-menubar>
+
+            <div class="profile-section">
+                <div class="user-profile" (mouseenter)="toggleDropdown()" (mouseleave)="toggleDropdown()">
+                    <img [src]="currentUser.image" class="profile-image" #profileImage>
+                    <div *ngIf="isDropdownVisible" class="dropdown-menu" [style.top.px]="profileImage.offsetTop + profileImage.clientHeight + 'px'" [style.left.px]="profileImage.offsetLeft + 'px'">
+                        <ul>
+                            <li (click)="navigateTo('my-profile')"><i class="bi bi-person-fill"></i> My Profile</li>
+                            <li (click)="logout() "><i class="bi bi-box-arrow-right"></i> Logout</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <ng-template #loginBlock>
+        <!-- <div class="background-container"> -->
+            <div class="header">
+                <p-avatar image="assets/ats-logo.png"
+                    styleClass="flex align-items-center justify-content-center mr-2" size="xlarge">
+                </p-avatar>
+                <h2 style="color:rgb(227, 227, 236);" >The Clever Warehouse</h2>
+               
+            </div>
+        <!-- </div> -->
+    </ng-template>
+
+    <router-outlet></router-outlet>
+
+    <footer class="footer">
+
+        <div class="address">
+
+            <p-inputIcon>
+                <i class="pi pi-map-marker"></i>
+            </p-inputIcon>
+
+            E3/3/ A,MIDC Chakan,Phase 3,Kuruli,<br>
+            Pune 410501, INDIA
+        
+</div>
+
+        <div class="contact">
+            <a href="https://www.ats-group.com/" style="color: white;">
+                <p-inputIcon>
+                    
+                    <i class="pi pi-globe"></i><br>
+                </p-inputIcon>
+                Visit Website
+            </a>
+        </div>
+
+        © 2024 ATS Conveyors India Pvt Ltd
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+.card {
+    padding: 2rem;
+    margin: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6; /* Add border to the table */
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+    border-right: 1px solid #dee2e6; /* Add border to the right of each cell */
+}
+
+th {
+    background-color: #1f0a50; /* Change the color of the table header */
+    color: #fff; /* Change the text color in the header to white for better contrast */
+}
+
+:host ::ng-deep .p-button {
+    margin: 0.5rem;
+}
+
+:host ::ng-deep .pi-pencil, 
+:host ::ng-deep .pi-check, 
+:host ::ng-deep .pi-times, 
+:host ::ng-deep .pi-trash {
+    font-size: 1.2rem;
+}
+
+:host ::ng-deep .p-inputtext {
+    width: 100%;
+}

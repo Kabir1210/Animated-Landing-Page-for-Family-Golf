@@ -1,0 +1,417 @@
+.btns {
+  margin-top: -40px;
+  margin-bottom: none;
+  padding-bottom: none;
+  margin-left: 900px;
+
+  display: flex;
+  justify-content: center;
+}
+.heading{
+  display: flex;
+  justify-content: center;
+}
+.p-button-info {
+  margin-left: 45px;
+}
+
+table {
+
+  border-collapse: collapse;
+
+  border-left: 2px solid black;
+
+  /* border-top: 2px solid black; */
+
+}
+
+td:not(.columnNo) {
+  border-top: none;
+}
+
+td {
+
+  width: 50px;
+
+  height: 50px;
+
+  border: none;
+  /* Remove all borders initially */
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  text-align: center;
+  /* Center contents of td */
+}
+
+tr:first-child td {
+  border-top: 2px solid black;
+  /* Apply top border to first row */
+}
+
+td+td:not(.columnNo) {
+
+  border-left: none;
+  /* Remove left border for cells that are not .columnNo */
+
+}
+
+tr+tr td:not(.columnNo) {
+
+  border-top: none;
+  /* Remove top border for cells that are not .columnNo */
+
+}
+
+td.columnNo {
+
+  /* border-top: 1px solid rgb(0, 255, 213); */
+  /* Add top border to .columnNo cells */
+
+  padding-top: 10px;
+  text-align: center;
+  /* padding-left: 20px; */
+  align-items: center;
+  padding-right: 30px;
+  
+}
+
+.grid-row-number {
+
+  text-align: center;
+
+  font-weight: bold;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  height: 50px;
+
+  width: 50px;
+
+}
+
+/* .container {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  margin-top: 40px;
+
+  padding-top: 50px;
+
+  padding-bottom: 30px;
+
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+} */
+/* .container {
+  
+  
+  justify-content: flex-start; 
+  align-items: center;
+  margin-top: 10px; 
+  padding-top: 20px; 
+  padding-bottom: 30px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  
+} */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  position: relative;
+  /* Ensure relative positioning for absolute child */
+}
+
+.row-numbers {
+
+  display: flex;
+
+  justify-content: flex-start;
+
+  margin-top: 10px;
+
+}
+
+.column-numbers {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 10px;
+
+}
+
+.grid-row-number,
+
+.grid-column-number {
+
+  padding: 5px;
+
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
+
+.column-numbers td {
+
+  border-right: 1px solid rgb(0, 255, 213);
+  /* Add right border to .columnNo cells */
+
+}
+
+.column-numbers td:first-child {
+
+  border-left: none;
+
+}
+
+/* Remove the top border for the last cell in the first row */
+
+table tr:first-child td:last-child {
+
+  border-top: none !important;
+
+}
+
+/* .stackerImage {
+  width: 45px;
+  height: 170px;
+  
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  box-shadow: 0 0 10px greenyellow;
+}
+
+.img-stacker {
+  margin-top: -260px;
+  margin-left: 853px;
+} */
+.img-stacker {
+  position: absolute;
+  /* transition: left 0.5s ease; */
+  margin-top: -260px;
+
+}
+
+.stackerImage {
+  width: 45px;
+  height: 170px;
+  box-shadow: 0 0 10px greenyellow;
+
+}
+
+
+
+.left-to-right {
+  transition: left 1s ease-in-out;
+}
+
+.right-to-left {
+  transition: left 1s ease-in-out;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: repeat(10, auto);
+  /* Adjust the number of columns as needed */
+  gap: 20px;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 10px;
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  padding-bottom: 10px;
+}
+
+label {
+  font-weight: bold;
+  vertical-align: middle;
+  font-family: ibm-plex-sans-regular;
+  font-size: 1.2rem;
+}
+
+label:after {
+  content: " : ";
+}
+
+input[type="text"] {
+  padding: 5px;
+  height: 45px;
+  border-radius: 5px;
+}
+
+.input-line {
+  display: contents;
+}
+.input-line1 {
+  display: contents;
+}
+.inputs {
+  width: 130px;
+
+}
+
+
+.input-line>label:nth-of-type(4),
+.input-line>input:nth-of-type(4),
+.input-line>label:nth-of-type(5),
+.input-line>input:nth-of-type(5),
+.input-line>label:nth-of-type(10),
+.input-line>input:nth-of-type(10),
+.input-line>label:nth-of-type(11),
+.input-line>input:nth-of-type(11) {
+  margin-left: 40px;
+
+}
+
+#communication {
+  visibility: hidden;
+}
+#currentRow {
+  visibility: hidden;
+}
+
+#errorCode {
+  visibility: hidden;
+}
+
+
+
+.headerStyle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+
+  box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+  background-color: #FAF9F6;
+}
+
+.header-item {
+  flex: 1;
+
+  text-align: center;
+
+}
+
+
+.header-item+.header-item {
+  margin-left: 20px;
+
+}
+
+.headerStyle h2 {
+  font-family: ibm-plex-sans-regular;
+  font-size: 1.5rem;
+
+  font-weight: bold;
+  margin: 0;
+  padding: 2px;
+}
+
+.Em-Image {
+  width: 90px;
+  height: 90px;
+  margin-left: 350px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.p-button-danger {
+  margin-left: 20px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  padding: none;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
+}
+
+.Title-header1 {
+  margin-top: -25px;
+
+}
+
+.title-name {
+  font-size: 25px;
+  font-weight: bold;
+  color: #34568B;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: .4;
+  }
+}
+
+.title-blink {
+  animation: blinker 1.80s linear infinite;
+}
+
+
+input{
+  text-align: center;
+}
+
+
+/* .dot {
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 100px;
+  align-items: center;
+  border: 3px solid yellow;
+} */
+.dot {
+  height: 30px;
+  width: 30px;
+  background-color: orangered;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 100px;
+  align-items: center;
+  border: 6px solid transparent; /* Start with a transparent border */
+  animation: blink 1s infinite alternate, spin 2s linear infinite; /* Blink and spin animations */
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  
+}
+
+@keyframes blink {
+  0% {
+    border-color: rgb(98, 228, 38); 
+  }
+  100% {
+    border-color: transparent; 
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg); 
+  }
+}
+
+
+.img-stacker1 {
+  position: absolute;
+  /* transition: left 0.5s ease; */
+  margin-top: -60px;
+
+}

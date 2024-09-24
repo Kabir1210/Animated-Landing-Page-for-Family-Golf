@@ -1,0 +1,113 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+
+  </div>
+  <div class="p-toolbar-group-center">
+    <h2 class="m-0">Transfer Pallet Details</h2>
+  </div>
+  <div class="p-toolbar-group-end">
+    <!-- <p-button pRipple severity="info" label="Transfer Pallet" icon="pi p-fluid    " /> -->
+
+  </div>
+</p-toolbar>
+<br>
+<div class="container">
+  <div class="row mb-2">
+      <!-- Pallet Code Section -->
+      <div class="col-md-6 col-lg-4 mb-2">
+          <div class="form-group">
+              <label for="palletCode" class="form-label">Pallet Code:</label>
+              <input id="palletCode" type="text" pInputText [(ngModel)]="palletCode" placeholder="Pallet Code" class="form-control" />
+              <div class="button-group">
+                  <p-button label="Search" (click)="fetchPalletOrderDetailsfromCurrentPalletStockdetails()"></p-button>
+              </div>
+          </div>
+      </div>
+
+      <!-- Current Location Section -->
+      <div class="col-md-6 col-lg-4 mb-2">
+          <div class="form-group">
+              <label for="currentLocation" class="form-label">Current Location:</label>
+              <input id="currentLocation" type="text" pInputText [(ngModel)]="positionName" placeholder="Position Name" class="form-control" />
+          </div>
+      </div>
+      
+      <!-- Destination Location Section -->
+      <div class="col-md-12 col-lg-4 mb-2">
+          <div class="form-group">
+              <label for="destinationLocation" class="form-label">Destination Location:</label>
+              <input id="destinationLocation" type="text" pInputText [(ngModel)]="destinationName" placeholder="e.g: 02-01-01" class="form-control" />
+              <div class="button-group">
+                  <p-button label="Validate" (click)="validatePositionName()"></p-button>
+                  <p-button label="Transfer" (click)="fetchAllMasterPositionDetailsByPositionNameAndPositionIsAllocatedAndEmptyPalletPositionAndPositionIsActive()"></p-button>
+              </div>
+          </div>
+      </div>
+  </div>
+<br>
+<br>
+
+<p-table #dt [value]="currentPalletStockDetailsTableList"
+  [globalFilterFields]="['productName', 'palletCode', 'skuCode', 'quantity']" [rows]="10" [paginator]="true"
+  styleClass="p-datatable-gridlines" [scrollable]="true" scrollHeight="500px" [resizableColumns]="true"
+  [exportHeader]="'customExportHeader'" [rowHover]="true">
+
+
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-iconField iconPosition="left" class="ml-auto">
+        <p-inputIcon>
+          <i class="pi pi-search"></i>
+        </p-inputIcon>
+        <input pInputText type="text" (input)="applyGlobalFilter($event)" placeholder="         Search keyword"
+          style="width: 200px;" 
+          style = "height: 34px"/>
+      </p-iconField>
+
+    </div>
+  </ng-template>
+
+
+  <ng-template pTemplate="header">
+    <tr role="row">
+      <th>Sr No</th>
+      <th pSortableColumn="palletCode">Pallet Code<p-sortIcon field="palletCode" /></th>
+      <!-- <th pSortableColumn="productName">Product Name<p-sortIcon field="productName" /></th> -->
+      <th pSortableColumn="coreSize">Core Size<p-sortIcon field="coreSize" /></th>
+      <th pSortableColumn="quantity">Quantity<p-sortIcon field="quantity" /></th>
+      <th pSortableColumn="floorName">Floor Name<p-sortIcon field="floorName" /></th>
+      <th pSortableColumn="rackColumn">Rack Column<p-sortIcon field="rackColumn" /></th>
+      <th pSortableColumn="positionName">Nomenclature<p-sortIcon field="positionName" /></th>
+      <th pSortableColumn="shiftName">Shift Name<p-sortIcon field="shiftName" /></th>
+      <th pSortableColumn="palletStatusName">Pallet Status<p-sortIcon field="palletStatusName" /></th>
+      <th pSortableColumn="cdatetime">Mission CreatedTime <p-sortIcon field="cdatetime" /></th>
+      <th pSortableColumn="infeedMissionStatus">Mission Status<p-sortIcon field="infeedMissionStatus" /></th>
+      <th pSortableColumn="infeedMissionStartDatetime">Mission StartTime<p-sortIcon field="infeedMissionStartDatetime" /></th>
+      <th pSortableColumn="infeedMissionEndDatetime">MissionEndTime<p-sortIcon field="infeedMissionEndDatetime" /></th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ rowData['palletCode'] }}</td>
+      <!-- <td>{{ rowData['productName'] }}</td> -->
+      <td>{{ rowData['coreSize'] }}</td>
+      <td>{{ rowData['quantity'] }}</td>
+      <td>{{ rowData['floorName'] }}</td>
+      <td>{{ rowData['rackColumn'] }}</td>
+      <td>{{ rowData['positionName'] }}</td>
+      <td>{{ rowData['shiftName'] }}</td>
+      <td>{{ rowData['palletStatusName'] }}</td>
+      <td>{{ rowData['cdatetime'] }}</td>
+      <!-- <td>{{ rowData['infeedMissionStatus'] }}</td> -->
+      <td>
+        <span class="p-column-title">Status</span>
+        <p-tag [value]="rowData['infeedMissionStatus']" [severity]="getSeverity(rowData['infeedMissionStatus'])" />
+      </td>
+      <td>{{ rowData['infeedMissionStartDatetime'] }}</td>
+      <td>{{ rowData['infeedMissionEndDatetime'] }}</td>
+
+    </tr>
+  </ng-template>
+</p-table>

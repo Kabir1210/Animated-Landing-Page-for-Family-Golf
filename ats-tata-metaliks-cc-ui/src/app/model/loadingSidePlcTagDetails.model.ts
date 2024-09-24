@@ -1,0 +1,22 @@
+export class LoadingSidePlcTagDetailsModel{
+    loadingSidePlcId!:number;
+    postionName!:string;
+    description!:string;
+    coreShooterMachineIsActiveTag!:string;
+    pickUpPalletPresentValue!:number;
+    pickUpPalletPresentTag!:string;
+    pickUpPalletCodeValue!:number;
+    pickUpPalletCodeTag!:string;
+    pickUpMaterialCode!:string;
+    pickUpMaterialQuantity!:number;
+    pickUpReadyToPick!:number;
+    dropPositionPalletPresentValue!:number;
+    dropPositionPalletPresentTag!:string;
+    dropPositionPalletCodeValue!:number;
+    dropPositionPalletCode!:string;
+    dropPositionIsEmptyTag!:string;
+    plcTagIsDeleted!:number;
+    coreShooterId!:number;
+    pickUpMaterialCodeTag!:string;
+    coreShooterMachineIsActiveValue!:number;
+}

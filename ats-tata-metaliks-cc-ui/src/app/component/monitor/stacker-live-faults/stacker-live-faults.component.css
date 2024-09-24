@@ -1,0 +1,139 @@
+.container-fluid {
+  background-color: #FBFCFC;
+}
+
+.card {
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  width:70%;
+  margin-left: 15%;
+}
+.heading-name-area {
+  margin-top: 1rem;
+  /* position: fixed; */
+  /* border: 1px solid red; */
+}
+.totalHeading{
+  margin-left: 70%;
+}
+
+.header{
+  margin-left: 10px;
+}
+
+/* Table */
+.table-area {
+  /* margin-top: 1rem; */
+  background-color: #FBFCFC;
+  /* border: 1px solid red; */
+  margin-left: 25%;
+  
+}
+
+.table {
+  font-size: 0.9rem;
+  /* background-color: #FBFCFC; */
+  background-color: white;
+  /* margin-top: 1rem; */
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-collapse:separate;
+  border-spacing:0 11px;
+   margin-top:-11px;
+   width: 80%;
+   margin-left: 35%;
+  
+}
+th, td {
+  /* border:2px solid red; */
+  padding: 10px;
+  text-align: center;
+ border-style:solid none;
+ padding:11px;
+ /* background-color:#F4B183; */
+ color: black;
+ 
+
+}
+
+.default-row {
+  background-color: #F4B183; /* Default background color */
+}
+.conveyor-row {
+  background-color:  #f2f2f2 !important; /* Specific background color */
+}
+td:first-child {
+  border-left-style:solid;
+  border-top-left-radius:11px;
+  border-bottom-left-radius:11px;
+
+
+}
+
+td:last-child {
+  border-right-style:solid;
+  border-bottom-right-radius:11px;
+  border-top-right-radius:11px;
+  color: #C00000;
+  
+}
+
+.blink {
+ 
+  height: 10px;
+  animation: blink 2s linear infinite;
+  padding: 8px;
+  color: red;
+
+}
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+    
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+th {
+  background-color:	whitesmoke;
+  color: black;
+
+} 
+
+#stacker-alarm {
+  /* margin-top: 1rem; */
+  border: 1px solid #ddd;
+
+
+}
+
+h4{
+  display:inline;
+  float:left;
+  margin-top: 20px;
+  margin-right: 15%;
+  }
+ 
+  
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .container-fluid {
+      /* background-color: green; */
+  }
+
+  .table-area{
+      width: 100%;
+      resize: vertical;
+  }
+
+}
+

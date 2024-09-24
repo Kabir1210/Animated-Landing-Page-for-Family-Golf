@@ -1,0 +1,163 @@
+<!-- HEADER SECTION -->
+<div class="p-toolbar-group-center">
+
+  <h2><span style="color: red;margin-left: 1%;">
+      <i class="pi pi-circle-on" style="color: red;"></i>Live</span> Dashboard</h2>
+</div>
+<div class="card-container flex">
+  <div class="card-container">
+    <p-card [style]="{ width: '1350px', height: '770px'}">
+      <ng-template pTemplate="content">
+        <h4>Day-wise report:</h4>
+        <div class="horizontal-cards">
+          <p-card header="Infeed Count" [style]="{ width: '320px', height: '240px', color: '#00b300' }">
+            <h2 style="font-size: 30px; margin-left: 30%;" class="pi pi-cart-plus">
+              <span class="pi pi-cart-plus" style="color: white;"></span>{{completedInfeedDetailsList.length}}
+            </h2>
+
+            <div class="smallCards">
+              <p-card [style]="{ width: '95px', height: '78px',  color: 'black','background-color': '#E3DEDE' }"
+                class="custom-card">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CS-4</b></div>
+                </ng-template>
+                <div><b>{{coreShooter4DetailsList.length}}</b></div>
+              </p-card>
+              <p-card [style]="{ width: '95px', height: '78px',  color: 'black','background-color': '#E3DEDE' }"
+                class="custom-card">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CS-5</b></div>
+                </ng-template>
+                <div><b>{{coreShooter5DetailsList.length}}</b></div>
+              </p-card>
+              <p-card [style]="{ width: '95px', height: '78px', color: 'black','background-color': '#E3DEDE' }"
+                class="custom-card">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CS-6</b></div>
+                </ng-template>
+                <div><b>{{coreShooter6DetailsList.length}}</b></div>
+              </p-card>
+            </div>
+          </p-card>
+
+          <p-card header="Outfeed Count" [style]="{ width: '400px', height: '240px', color: '#000066' }">
+            <h2 style="font-size: 30px;margin-left: 30%;" class="pi pi-cart-minus">
+              <span class="pi pi-cart-plus" style="color: white;"></span>{{completedOutfeedDetailsList.length}}
+            </h2>
+            <div class="smallCards">
+              <p-card [style]="{ width: '70px', height: '80px',color: 'black','background-color': '#E3DEDE'}"
+                class="custom-card">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CCM-6</b></div>
+                </ng-template>
+                <div><b>{{cCM6DetailsList.length}}</b></div>
+              </p-card>
+              <p-card [style]="{ width: '70px', height: '80px', color: 'black','background-color': '#E3DEDE' }"
+                class="custom-card">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CCM-7</b></div>
+                </ng-template>
+                <div><b>{{cCM7DetailsList.length}}</b></div>
+              </p-card>
+              <p-card [style]="{ width: '70px', height: '80px', color: 'black','background-color': '#E3DEDE' }"
+                class="custom-card ">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CCM-8</b></div>
+                </ng-template>
+                <div><b>{{cCM8DetailsList.length}}</b></div>
+              </p-card>
+              <p-card [style]="{ width: '70px', height: '80px', color: 'black','background-color': '#E3DEDE' }"
+                class="custom-card">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CCM-9</b></div>
+                </ng-template>
+                <div><b>{{cCM9DetailsList.length}}</b></div>
+              </p-card>
+              <p-card [style]="{ width: '70px', height: '80px',color: 'black','background-color': '#E3DEDE'}"
+                class="custom-card   ">
+                <ng-template pTemplate="header">
+                  <div class="fontSizeClass"><b>CCM-10</b></div>
+                </ng-template>
+                <div><b>{{cCM10DetailsList.length}}</b></div>
+              </p-card>
+            </div>
+          </p-card>
+
+          <div class="card-container">
+            <p-card>
+              <div class="count-container">
+                <div class="count-section">
+                  <h2 style="color: red;">Alarm Count</h2>
+                  <h2 class="pi pi-clock alarmColor"><b>
+                      <span class="pi pi-cart-plus" style="color: white;"></span>
+                      {{equipmentFirstAlarmHistoryDetailsTableList.length}}</b></h2>
+                </div>
+                <p-divider layout="vertical"></p-divider>
+
+                <div class="count-section">
+                  <h2 style="color:#009933">Rejected Count</h2>
+                  <h2 class="pi pi-times-circle rejectColor"><b>
+                      <span class="pi pi-cart-plus" style="color: white;"></span>
+                      {{rejectedOutfeedDetailsList.length}}</b></h2>
+                </div>
+                <p-divider layout="vertical"></p-divider>
+
+                <div class="count-section-current">
+                  <h2 style="color: #ff9900;">Current Stock</h2>
+                  <h2 class="pi pi-box currentColor"><b>
+                      <span class="pi pi-cart-plus" style="color: white;"></span>
+
+                      {{currentCountSizeList.length}}</b></h2>
+                </div>
+              </div>
+            </p-card>
+          </div>
+        </div>
+
+        <div class=" card-container card-containerchart">
+          <p-card header="Production Trends" class="card">
+            <div class="cardLine element">
+              <p-chart type="line" [data]="dataLine" [options]="optionsLine"></p-chart>
+            </div>
+          </p-card>
+          <p-card header="Infeed And Outfeed Chart" class="card">
+            <div class="InfeedOutfeedCountgraph">
+              <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+            </div>
+          </p-card>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+  <!------------------------------------------------------------------->
+  <div class="card-container">
+    <p-card [style]="{ width: '450px', height: '770px' }">
+      <ng-template pTemplate="content">
+        <h2 class="cardsName">ASRS Order Details</h2>
+        <div class="vertical-cards">
+          <p-card header="Total Orders" [style]="{ width: '400px', height: '120px' }"
+            class="vertical-card total-orders">
+            <i class="pi pi-box" style="font-size: 25px;"></i>
+            <span class="pi pi-cart-plus" style="color: #f8d7da;"></span>
+            {{qtytotal}}
+          </p-card>
+          <p-card header="Executed" [style]="{ width: '400px', height: '120px' }" class="vertical-card executed">
+            <i class="pi pi-box" style="font-size: 25px;"></i>
+            <span class="pi pi-cart-plus" style="color: #d4edda;"></span>
+            {{qtyActualQuantity}}
+          </p-card>
+          <p-card header="Remaining" [style]="{ width: '400px', height: '120px' }" class="vertical-card remaining">
+            <i class="pi pi-box" style="font-size: 25px;"></i>
+            <span class="pi pi-cart-plus" style="color: #fff3cd ;"></span>
+            {{qtyRemaning}}
+          </p-card>
+          <p-card header="Percentage" [style]="{ width: '400px', height: '120px' }" class="vertical-card percentage">
+            <i class="pi pi-box" style="font-size: 25px;"></i>
+            <span class="pi pi-cart-plus" style="color: #cce5ff ;"></span>
+            <span *ngIf="qtytotal !== 0">{{ calculatePercentage(qtyActualQuantity + qtyRemaning, qtytotal) }}%</span>
+          </p-card>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

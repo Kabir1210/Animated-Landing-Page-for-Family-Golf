@@ -1,0 +1,239 @@
+<p-toast />
+<div class="p-toolbar-group-center">
+  <h2 class="m-0 heading">Stacker Live Status</h2>
+</div>
+
+<div class="btns">
+  <button pButton pRipple type="button" label="Stacker-1" class="p-button-raised p-button-info"
+    style="margin-left: 20px;" (click)="selectStacker('STACKER-1')"></button>
+  <button pButton pRipple type="button" label="Stacker-2" class="p-button-raised p-button-info"
+    (click)="selectStacker('STACKER-2')"></button>
+</div>
+
+
+<div  *ngIf="selectedStackerName == 'STACKER-1'">
+  <div class="container">
+    <div class="Title-header1">
+      <h4 class="title-name title-blink">STACKER-1</h4>
+    </div>
+    <table *ngIf="stackerLiveList1.length > 0">
+      <tr *ngFor="let row of rows">
+        <td *ngFor="let col of columns"></td>
+        <td class="grid-row-number" style="border-left: 2px solid black;">{{ row.key }}</td>
+      </tr>
+      <tr>
+        <td *ngFor="let col of columns" class="columnNo"
+          style="border-top: 2px solid black; border-left: 2px solid rgb(235, 229, 229);">
+          <div *ngIf="col.value == col.key">
+            <div class="dot img-stacker1"></div>
+          </div>
+
+          <div><b>{{ col.key }}</b></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <br>
+
+  <div class="headerStyle">
+    <header class="header-item">
+      <h2>Stacker Status</h2>
+    </header>
+    <header class="header-item">
+      <h2 style="margin-left: 710px;">Source</h2>
+    </header>
+    <header class="header-item">
+      <h2 style="margin-left: 130px;">Target</h2>
+    </header>
+  </div>
+
+  <div class="field">
+    <div class="input-line" *ngIf="stackerLiveList1.length > 0">
+      <label for="Status">Status</label>
+      <input class="inputs" type="text" pInputText id="Status" required name="Status"
+        [(ngModel)]="stackerLiveList1[0].stackerStaus" readonly />
+
+      <label for="currentLayer">Current Layer</label>
+      <input class="inputs" type="text" pInputText id="currentLayer" required name="currentLayer"
+        [(ngModel)]="stackerLiveList1[0].stackerCurrentColumn" readonly />
+
+      <label for="verticalvalue1">Communication</label>
+      <input class="inputs" type="text" pInputText id="verticalvalue1" required name="verticalvalue"
+        [(ngModel)]="stackerLiveList1[0].stackerCommnucation" readonly />
+
+      <label for="extraInput1" style="margin-left: 150px;">Start Layer</label>
+      <input class="inputs" type="text" pInputText id="extraInput1" required name="extraInput1"
+        [(ngModel)]="stackerLiveList1[0].stackerStartLayer" readonly />
+
+      <label for="extraInput2">End Layer</label>
+      <input class="inputs" type="text" pInputText id="extraInput2" required name="extraInput2"
+        [(ngModel)]="stackerLiveList1[0].stackerTargetLayer" readonly />
+    </div>
+
+    <div class="input-line" *ngIf="stackerLiveList1.length > 0">
+      <label for="forkStatus">Current rack</label>
+      <input class="inputs" type="text" pInputText id="forkStatus" required name="forkStatus"
+        [(ngModel)]="stackerLiveList1[0].stackerCurrentRack" readonly />
+
+      <label for="currentRank">Current row</label>
+      <input class="inputs" type="text" pInputText id="currentRank" required name="currentRank"
+        [(ngModel)]="stackerLiveList1[0].stackerCurrentRow" readonly />
+
+      <label for="verticalvalue2">TaskCode</label>
+      <input class="inputs" type="text" pInputText id="verticalvalue2" required name="verticalvalue"
+        [(ngModel)]="stackerLiveList1[0].stackerTaskCode" readonly />
+
+      <label for="extraInput3" style="margin-left: 150px;">Start Rack</label>
+      <input class="inputs" type="text" pInputText id="extraInput3" required name="extraInput3"
+        [(ngModel)]="stackerLiveList1[0].stackerStartRack" readonly />
+
+      <label for="extraInput4">End Rack</label>
+      <input class="inputs" type="text" pInputText id="extraInput4" required name="extraInput4"
+        [(ngModel)]="stackerLiveList1[0].stackerTargetRack" readonly />
+    </div>
+
+    <div class="input-line" *ngIf="stackerLiveList1.length > 0">
+      <label for="errorCode" style="color: white;">dummy2</label>
+      <input class="inputs" type="text" pInputText id="errorCode" required name="errorCode" readonly />
+
+      <label for="currentRow" style="color: white;">dummy</label>
+      <input class="inputs" type="text" pInputText id="currentRow" required name="currentRow" readonly />
+
+      <label for="communication" style="color: white;">dummy1</label>
+      <input class="inputs" type="text" pInputText id="communication" required name="communication" readonly />
+
+      <label for="extraInput5" style="margin-left: 150px;">Start Row</label>
+      <input class="inputs" type="text" pInputText id="extraInput5" required name="extraInput5"
+        [(ngModel)]="stackerLiveList1[0].stackerStartRow" readonly />
+
+      <label for="extraInput6">End Row</label>
+      <input class="inputs" type="text" pInputText id="extraInput6" required name="extraInput6"
+        [(ngModel)]="stackerLiveList1[0].stackerTargetRow" readonly />
+    </div>
+    
+  </div>
+
+  <div class="btn">
+    <div class="emBtn">
+      <img src="assets/Emergency button.jpg" class="Em-Image">
+      <button pButton type="button" label="Emergency button" class="p-button-danger btn-deng" (click)="editSelectedIsDispatchStartActiveInActiveCheckBox(stackerLiveList1[0])"></button>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- STACKER-2-->
+
+
+<div  *ngIf="selectedStackerName == 'STACKER-2'">
+  <div class="container">
+    <div class="Title-header1">
+      <h4 class="title-name title-blink">STACKER-2</h4>
+    </div>
+    <table *ngIf="stackerLiveList2.length > 0">
+      <tr *ngFor="let row of rows1">
+        <td *ngFor="let col of columns1"></td>
+        <td class="grid-row-number" style="border-left: 2px solid black;">{{ row.key }}</td>
+      </tr>
+      <tr>
+        <td *ngFor="let col of columns1" class="columnNo"
+          style="border-top: 2px solid black; border-left: 2px solid rgb(235, 229, 229);">
+          <div *ngIf="col.value != 0">
+            <div class="dot img-stacker1"></div>
+          </div>
+
+          <div><b>{{ col.key }}</b></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <br>
+
+  <div class="headerStyle" style="margin-top: -10px;">
+    <header class="header-item">
+      <h2>Stacker Status</h2>
+    </header>
+    <header class="header-item">
+      <h2 style="margin-left: 710px;">Source</h2>
+    </header>
+    <header class="header-item">
+      <h2 style="margin-left: 130px;">Target</h2>
+    </header>
+  </div>
+
+  <div class="field">
+    <div class="input-line" *ngIf="stackerLiveList2.length > 0">
+      <label for="Status">Status</label>
+      <input class="inputs" type="text" pInputText id="Status" required name="Status"
+        [(ngModel)]="stackerLiveList1[0].stackerStaus" readonly />
+
+      <label for="currentLayer">Current Layer</label>
+      <input class="inputs" type="text" pInputText id="currentLayer" required name="currentLayer"
+        [(ngModel)]="stackerLiveList2[0].stackerCurrentColumn" readonly />
+
+      <label for="verticalvalue1">Communication</label>
+      <input class="inputs" type="text" pInputText id="verticalvalue1" required name="verticalvalue"
+        [(ngModel)]="stackerLiveList2[0].stackerCommnucation" readonly />
+
+      <label for="extraInput1" style="margin-left: 150px;">Start Layer</label>
+      <input class="inputs" type="text" pInputText id="extraInput1" required name="extraInput1"
+        [(ngModel)]="stackerLiveList2[0].stackerStartLayer" readonly />
+
+      <label for="extraInput2">End Layer</label>
+      <input class="inputs" type="text" pInputText id="extraInput2" required name="extraInput2"
+        [(ngModel)]="stackerLiveList2[0].stackerTargetLayer" readonly />
+    </div>
+
+    <div class="input-line" *ngIf="stackerLiveList2.length > 0">
+      <label for="forkStatus">Current rack</label>
+      <input class="inputs" type="text" pInputText id="forkStatus" required name="forkStatus"
+        [(ngModel)]="stackerLiveList2[0].stackerCurrentRack" readonly />
+
+      <label for="currentRank">Current row</label>
+      <input class="inputs" type="text" pInputText id="currentRank" required name="currentRank"
+        [(ngModel)]="stackerLiveList2[0].stackerCurrentRow" readonly />
+
+      <label for="verticalvalue2">TaskCode</label>
+      <input class="inputs" type="text" pInputText id="verticalvalue2" required name="verticalvalue"
+        [(ngModel)]="stackerLiveList1[0].stackerTaskCode" readonly />
+
+      <label for="extraInput3" style="margin-left: 150px;">Start Rack</label>
+      <input class="inputs" type="text" pInputText id="extraInput3" required name="extraInput3"
+        [(ngModel)]="stackerLiveList2[0].stackerStartRack" readonly />
+
+      <label for="extraInput4">End Rack</label>
+      <input class="inputs" type="text" pInputText id="extraInput4" required name="extraInput4"
+        [(ngModel)]="stackerLiveList2[0].stackerTargetRack" readonly />
+    </div>
+
+    <div class="input-line" *ngIf="stackerLiveList2.length > 0">
+      <label for="errorCode" style="color: white;">dummy2</label>
+      <input class="inputs" type="text" pInputText id="errorCode" required name="errorCode" readonly />
+
+      <label for="currentRow" style="color: white;">dummy</label>
+      <input class="inputs" type="text" pInputText id="currentRow" required name="currentRow" readonly />
+
+      <label for="communication" style="color: white;">dummy1</label>
+      <input class="inputs" type="text" pInputText id="communication" required name="communication" readonly />
+
+      <label for="extraInput5" style="margin-left: 150px;">Start Row</label>
+      <input class="inputs" type="text" pInputText id="extraInput5" required name="extraInput5"
+        [(ngModel)]="stackerLiveList2[0].stackerStartRow" readonly />
+
+      <label for="extraInput6">End Row</label>
+      <input class="inputs" type="text" pInputText id="extraInput6" required name="extraInput6"
+        [(ngModel)]="stackerLiveList2[0].stackerTargetRow" readonly />
+    </div>
+  </div>
+  
+  <div class="btn">
+    <div class="emBtn" style="margin-top: -10px;">
+      <img src="assets/Emergency button.jpg" class="Em-Image">
+      <button pButton type="button" label="Emergency button" class="p-button-danger btn-deng" (click)="editSelectedIsDispatchStartActiveInActiveCheckBox(stackerLiveList2[0])"></button>
+    </div>
+  </div>
+
+</div>

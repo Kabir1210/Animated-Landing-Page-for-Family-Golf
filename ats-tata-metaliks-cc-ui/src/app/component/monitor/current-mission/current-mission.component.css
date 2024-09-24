@@ -1,0 +1,186 @@
+.card {
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff;
+  /* Ensure card adjusts width on smaller screens */
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+  border: 1px solid #dee2e6;
+}
+
+td, th {
+  padding: 0.15rem;
+  text-align: center;
+  font-size: 14px;
+  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+
+th {
+  background-color: #c9d3dd;
+  color: black;
+}
+
+:host ::ng-deep .p-button {
+  margin: 0.5rem;
+  font-size: 0.8rem;
+}
+
+:host ::ng-deep .pi-pencil, 
+:host ::ng-deep .pi-check, 
+:host ::ng-deep .pi-times, 
+:host ::ng-deep .pi-trash {
+  font-size: 0.8rem;
+}
+
+:host ::ng-deep .p-inputtext {
+  width: 100%;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.field label {
+  flex: 1;
+  margin-bottom: 5px;
+}
+
+.field input {
+  flex: 2;
+  margin-bottom: 5px;
+}
+
+.m-0 {
+  text-align: center;
+  color: #396a9b;
+}
+
+.m-1 {
+  text-align: center;
+  color: #0891a3;
+}
+
+.m-2 {
+  text-align: center;
+  color: #9e3ca7;
+}
+
+.m-3 {
+  text-align: center;
+  color: #4e9ce9;
+}
+
+.tables-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin-left: 40px;
+}
+
+.table-wrapper {
+  flex: 1;
+  max-width: 100%; /* Adjust to full width on small screens */
+}
+
+.p-datatable table {
+  width: 100%;
+  table-layout: auto; /* Allow the table to resize automatically */
+}
+
+.p-datatable .p-datatable-thead > tr > th,
+.p-datatable .p-datatable-tbody > tr > td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* Adjust width for responsiveness */
+  width: auto;
+}
+
+.text-danger {
+  width: 100%;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets and smaller screens */
+@media (max-width: 768px) {
+  .card {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  table, .tables-container {
+    font-size: 12px;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-datatable-tbody > tr > td {
+    font-size: 12px;
+  }
+
+  .field {
+    flex-direction: column;
+  }
+
+  .field input {
+    margin-top: 5px;
+  }
+
+  .table-wrapper {
+    max-width: 100%;
+  }
+}
+
+/* Phones and very small screens */
+@media (max-width: 480px) {
+  .card {
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  table, .tables-container {
+    font-size: 10px;
+  }
+
+  .p-datatable .p-datatable-thead > tr > th,
+  .p-datatable .p-datatable-tbody > tr > td {
+    font-size: 10px;
+  }
+
+  .field {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .field label, .field input {
+    width: 100%;
+  }
+
+  .table-wrapper {
+    min-width: 100%;
+  }
+}

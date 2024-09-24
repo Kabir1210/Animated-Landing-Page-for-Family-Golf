@@ -1,0 +1,163 @@
+<p-toolbar>
+  <div class="p-toolbar-group-start">
+
+  </div>
+  <div class="p-toolbar-group-center">
+    <h2 class="m-0">Generate Manual Retrival Order Details</h2>
+  </div>
+  <div class="p-toolbar-group-end">
+    <p-button pRipple severity="info" label="Filter" icon="pi pi-filter" (click)="showFilters = !showFilters" />
+    <p-button pRipple severity="success" label="Add" icon="pi pi-plus" class="mr-2" (click)="openAddOrderDialog()" />
+  </div>
+
+</p-toolbar>
+
+
+<div *ngIf="showFilters">
+  <p-calendar placeholder="Start Date" [(ngModel)]="dispatchScheduleCdatetimeStart"
+    (ngModelChange)="dateTimeValidation()" [showTime]="true" hourFormat="24"></p-calendar>
+  <p-calendar placeholder="End Date" [(ngModel)]="dispatchScheduleCdatetimeEnd" (ngModelChange)="dateTimeValidation()"
+    [showTime]="true" hourFormat="24" [ngStyle]="{'padding-left': '10px'}"></p-calendar>
+  <div *ngIf="disableSearchButton" style="color: red;">End date must be greater than start date</div>
+
+  <p-dropdown [options]="DestinationList" name="selectedDestination" [(ngModel)]="selectedDestination"
+    placeholder="Select a Destination"></p-dropdown>
+
+    <p-dropdown [options]="dispatchStatusList" name="selectedStatus" [(ngModel)]="selectedDispatchStatus"
+    placeholder="Select a Status"></p-dropdown>
+
+  <p-dropdown [options]="CoreSizeListProduct" name="selectedCoreSize" [(ngModel)]="selectedCoreSize"
+    placeholder="Select a core size"></p-dropdown>
+  <div>
+    <p-button label="Search" (click)="fetchGenerateManualRetrivalOrderDetailsByAllFilters()"
+      [disabled]="disableSearchButton"></p-button>
+    <p-button label="Reset" (click)="resetFilters()"></p-button>
+  </div>
+</div>
+
+
+
+<!--Table Section-->
+<p-toast/>
+<p-table #dt [value]="generateManualRetrievalList"
+  [globalFilterFields]="['orderNo', 'coreSize', 'retrivalScheduleCdatetime', 'Action','Start/Stop']" [rows]="10"
+  [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true" styleClass="p-datatable-gridlines" [scrollable]="true"
+  scrollHeight="600px" [resizableColumns]="true" [exportHeader]="'customExportHeader'" [rowHover]="true">
+
+
+  <ng-template pTemplate="caption">
+    <div class="flex">
+      <p-iconField iconPosition="left" class="ml-auto">
+        <p-inputIcon>
+          <i class="pi pi-search"></i>
+        </p-inputIcon>
+        <input pInputText type="text" (input)="applyGlobalFilter($event)" placeholder="  Search keyword"
+          style="width: 200px;" />
+      </p-iconField>
+
+    </div>
+  </ng-template>
+
+
+  <ng-template pTemplate="header">
+    <tr role="row">
+      <th>Sr No</th>
+      <th>Transfer Order No</th>
+      <th>Description Of Core</th>
+      <th>Core Size</th>
+      <th>Destination</th>
+      <th>Planning Quantity</th>
+      <th>Actual Quantity</th>
+      <th>Total Quantity</th>
+      <th>Remaning Quantity</th>
+      <th>Dispatch Status</th>
+      <th>Cdatetime</th>
+      <th>Action</th>
+      <th>Start/Stop</th>
+      <th>Delete order</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>{{ rowData['transferOrderNo'] }}</td>
+      <td>{{ rowData['descriptionOfCore'] }}</td>
+      <td>{{ rowData['coreSize'] }}</td>
+      <td>{{ rowData['destination'] }}</td>
+      <td>{{ rowData['plannedQuantity'] }}</td>
+      <td>{{ rowData['actualQuantity'] }}</td>
+      <td>{{ rowData['totalQuantity']}}</td>
+      <td>{{rowData['remaningQuantity']}}</td>
+      <td>{{rowData['dispatchStatus']}}</td>
+      <td>{{ rowData['dispatchScheduleCdatetime'] }}</td>
+
+      <td>
+
+        <p-button type="button" icon="pi pi-plus" label="Add" class="p-button-primary"
+          (click)="addpalletQuantity(rowData)">
+        </p-button>
+      </td>
+      <td>
+        <label class="switch" style="margin-left: 35px; margin-top: -10px;">
+          <input type="checkbox" id="addActiveId" (change)="
+                    editSelectedIsDispatchStartActiveInActiveCheckBox(
+                      generateManualRetrievalList[rowIndex]
+                    )
+                  " [checked]="
+                  generateManualRetrievalList[rowIndex].isDispatchStart == 1
+                  " />
+
+          <span class="slider round"></span>
+        </label>
+      </td>
+      <td>
+        <p-button pRipple icon="pi pi-trash" severity="danger" [rounded]="false" [outlined]="false"
+        (click)="deleteDispatchOrderRow(rowData)"  />
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<!----------------------------------------------------------->
+<form #dispatchForm="ngForm">
+  <p-dialog [(visible)]="addDispatchDialog" [style]="{ width: '650px',height:'540px' }" header="Core Size Details" [modal]="true"
+    styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+
+      <div class="field">
+        <label for="name">Core Size</label>
+        <p-dropdown [options]="CoreSizeListProduct" name="selectedCoreSize" [(ngModel)]="selectedCoreSize"
+                    placeholder="Select a core size" (onChange)="addSelectedProductDesc()"></p-dropdown>
+      </div>
+      <div class="field">
+        <label for="name">Description Of Core</label>
+        <input type="text" pInputText id="descriptionOfCore" [(ngModel)]="selectedCoreDescription" required
+               name="descriptionOfCore" #descriptionOfCore="ngModel" autofocus />
+        <small class="p-error" *ngIf="descriptionOfCore.invalid && (descriptionOfCore.dirty || descriptionOfCore.touched)">
+          Core Description is required.
+        </small>
+      </div>
+      
+      
+      <div class="field">
+        <label for="name">Destination</label>
+        <p-dropdown [options]="DestinationList" name="selectedDestination" [(ngModel)]="selectedDestination"
+          placeholder="Select a Destination" ></p-dropdown>
+      </div>
+      <div class="field">
+        <label for="name">Quantity</label>
+        <input type="text" pInputText name="quantity" [(ngModel)]="quantity" placeholder="Quantity"
+          style="width: 200px;" />
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p-button pRipple label="Cancel" icon="pi pi-times" [text]="true" (click)="hideDialog()" />
+      <p-button pRipple label="Save" icon="pi pi-check" [text]="true"
+        (click)="addGenerateRetrivalManualDetails(addDispatchOrder)" [disabled]="dispatchForm.invalid" />
+    </ng-template>
+
+  </p-dialog>
+  <p-confirmDialog [style]="{ width: '450px' }" />
+</form>

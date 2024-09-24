@@ -1,0 +1,1035 @@
+.input-line {
+  margin-top: 15px;
+}
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+/* styles.css or your component-specific CSS file */
+.penedit {
+  cursor: pointer;
+  font-size: 1.5rem; /* Adjust size as needed */
+  color: #000; /* Adjust color as needed */
+}
+
+.validation-message{
+  color: red;
+  margin-left: 100px;
+  margin-top: 5px;
+}
+.text-success {
+  color: rgb(34, 212, 34);
+}
+.input-wrapper input {
+  padding-right: 30px; 
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px; 
+  transform: translateY(-50%);
+  font-size: 30px;
+  cursor: pointer; 
+}
+
+.editbtn {
+  width: 50px;
+}
+.dropbtn{
+  margin-bottom: 170px;
+}
+.custom-icon {
+  color: red;
+  font-size: 35px;
+}
+.custom-icon1 {
+  color: red;
+  font-size: 20px;
+ padding-top: 5px;
+}
+.required:after {
+  content: "*";
+  color: red;
+}
+.box1 {
+  width: 100px;
+  text-align: center;
+  border: 1px solid gray;
+
+}
+
+/* new count in 2-d layout */
+.palletPositions {
+  cursor: pointer;
+  /* Ensures the div is clickable */
+}
+
+.inputTextBoxToCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.inputText {
+  text-align: center;
+  /* height: 30%; */
+  font-family: 'open sans';
+
+}
+
+.red-background {
+  /* The image used */
+  background-image: url("/assets/images/lock.png");
+  background-color: rgb(253, 227, 227);
+
+}
+
+.modalStyle {
+  box-shadow: 0.1rem 0.2rem 0.6rem -0.3rem rgba(34, 34, 36, 0.45);
+}
+
+.inputTextBox {
+  text-align: center;
+  box-shadow: 0.1rem 0.2rem 0.6rem -0.3rem rgba(2, 23, 207, 0.45);
+  font-weight: bold;
+  font-family: 'open sans';
+  font-size: 20px;
+
+}
+
+.layout-border {
+  border: 3px solid #2F528F;
+  width: 100%;
+  overflow: auto;
+  overflow-y: auto;
+  padding-left: 90px;
+  padding-bottom: 10px;
+  /* align-items: center; */
+
+
+
+}
+
+nav .vericaltext {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
+
+td.break {
+  display: block;
+}
+
+.rackNameButtonth {
+  border-color: white;
+  color: aliceblue;
+
+}
+
+label {
+  display: inline-block;
+
+
+}
+
+.area-name-style {
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  margin-left: 50%;
+}
+
+.area-header {
+  text-align: center;
+}
+
+/* *:required {
+    background-color: gold;
+  } */
+/* input:required:invalid {
+    border-color: #f52f2f;
+  } */
+/* .row label:after {
+    color: #e32;
+    content: ' *';
+    display:inline;
+  } */
+thead {
+
+  background-color: #77a2f3;
+  border: 1px solid black;
+  color: antiquewhite;
+
+}
+
+.buttonstyle {
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonstyle.red {
+  background-color: red;
+}
+
+.btn {
+  font-size: smaller;
+}
+
+.btn-success {
+  background-color: green;
+  color: white;
+  box-shadow: 0.4rem 0.3rem 0.2rem -0.1rem rgba(177, 241, 177, 0.45);
+}
+
+/* .btn-secondary {
+    background-color: gray;
+    color: white;
+  } */
+/* .palletDetails {
+  
+    font-size: 0.9rem;
+    background-color: white;
+   
+  }  */
+.palletDetails.table-bordered>thead>tr>th {
+
+  border-bottom: 2px solid #4976ad;
+
+}
+
+.palletDetails.stripe {
+  border: 1px solid #4481e9;
+
+}
+
+.palletDetails.table-bordered>th>td {
+  border-bottom: 1px solid #4481e9;
+}
+
+.palletDetails tr:nth-child(even) {
+  background-color: #DAE3F3;
+}
+
+.main-heading {
+  padding-top: 10px;
+  /* padding-bottom: 10px; */
+  font-size: 20px;
+  font-weight: bold;
+  color: #333F50;
+  font-family: ibm-plex-sans-regular;
+
+}
+
+.main-heading-floorName {
+  padding-top: 18px;
+  padding-bottom: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  /* color: #213654;
+    font-family: ibm-plex-sans-regular; */
+}
+
+.floorName {
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+th {
+
+  Color: rgb(15, 12, 12);
+}
+
+th {
+  width: 150px;
+  text-align: center;
+  border: 1px solid black;
+  padding: 5px
+}
+
+.grid {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  gap: 0px 0px;
+
+}
+
+td {
+  padding: 2px;
+
+  text-align: center;
+}
+
+.pallet-position {
+  padding: 2px;
+  height: 40px;
+  width: 36px;
+  border: 3px solid black;
+  background-color: rgb(5, 187, 5);
+  border-radius: 5px;
+
+}
+
+.palletRackPosition {
+  margin-left: 1%;
+}
+
+
+.columnCountpositions {
+  /* border-style: ridge; */
+  /* border: 1px solid rgb(134, 133, 133);  */
+  height: 30px;
+  padding-left: 3%;
+  
+  /* cursor: pointer; */
+
+
+}
+
+/* .conveyourpalletPositionsbox{
+   
+  border:0.1px solid #f4f6f8;  
+  box-shadow: 0.1rem 0.2rem 0.2rem -0.8rem rgba(38, 163, 235, 0.45); 
+    height: 20px;
+    width: 20px;
+  } */
+.conveyourpalletpositions {
+  /* border-style: ridge; */
+  border-style: ridge;
+  border-bottom: 1px solid rgb(134, 133, 133);
+  border-top: 1px solid rgb(134, 133, 133);
+
+
+  background-color: #f8faf9;
+  height: 30px;
+  /* cursor: pointer; */
+
+
+}
+
+/* .conveyourpalletPositions{
+    height: 20px;
+    width: 20px;
+    
+    border-radius: 3px;
+    margin: 2px;
+  } */
+.positions {
+  border-style: outset;
+  border: 1px solid rgb(212, 209, 209);
+  height: 30px;
+  cursor: pointer;
+
+
+
+
+}
+
+.lockPalletPositions {
+  height: 18px;
+  width: 18px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: rgb(247, 34, 45);
+
+  margin: 1.5px;
+
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+}
+
+.columnCountpalletPositions {
+  /* padding: 2px; */
+  height: 20px;
+  width: 15.5px;
+  font-size: smaller;
+  color: #848c96;
+  margin: 2px;
+
+}
+
+.palletPositions {
+  /* padding: 2px; */
+  height: 18px;
+  width: 18px;
+  border: 1px solid rgb(3, 97, 184);
+  border-radius: 3px;
+  margin: 1.5px;
+  /* box-shadow: 0.1rem 0.2rem 0.6rem -0.3rem rgba(38, 163, 235, 0.45); */
+}
+
+.deadPalletPositions {
+  height: 18px;
+  width: 18px;
+  border: 1px solid rgb(3, 97, 184);
+  border-radius: 3px;
+  margin: 1.5px;
+
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+
+}
+
+/* .deadPalletPositions {
+    height: 18px;
+    width: 18px;
+    border: 1px solid rgb(3, 97, 184);
+    border-radius: 3px;
+    margin: 1.5px;
+    font-size: 14px;
+    
+  
+    background-image: url("/assets/images/dead11.png"); 
+   
+    background-position: center;
+   
+    background-repeat: no-repeat;
+  } */
+
+
+/* area3 */
+.lockPalletPositionsArea3 {
+  height: 100px;
+  width: 10px;
+  border: 1px solid black;
+  border-radius: 3px;
+  background-color: rgb(247, 34, 45);
+
+  margin: 1.5px;
+}
+
+.palletPositionsAreaName3 {
+  /* padding: 2px; */
+  height: 10px;
+  width: 10px;
+  border: 1px solid rgb(3, 97, 184);
+  border-radius: 3px;
+  margin: 2px;
+  /* box-shadow: 0.1rem 0.2rem 0.6rem -0.3rem rgba(38, 163, 235, 0.45); */
+}
+
+.deadPalletPositionsArea3 {
+  height: 10px;
+  width: 10px;
+  border: 1px solid rgb(3, 97, 184);
+  border-radius: 3px;
+  margin: 2px;
+  box-shadow: 0.1rem 0.2rem 0.6rem -0.3rem rgba(38, 163, 235, 0.45);
+
+
+}
+
+.pallet-position-InActive {
+  padding: 2px;
+  height: 40px;
+  width: 36px;
+  border: 3px solid black;
+  /* background-color: red; */
+  border-radius: 5px;
+  /* background-image: url("/assets/images/lock.png"); */
+
+
+}
+
+.pallet-position-NotEmpty {
+  padding: 2px;
+  height: 40px;
+  width: 36px;
+  border: 3px solid black;
+  background-color: white;
+  border-radius: 5px;
+
+}
+
+/* .pallet-position-NotEmpty {
+    padding: 2px;
+    height: 40px;
+    width: 42px;
+    border: 3px solid black;
+    background-color: whi;
+    border-radius: 5px;
+   
+  } */
+.control-label {
+  font-size: large;
+  font-weight: bold;
+}
+
+#floorNameId {
+  border-color: black;
+
+}
+
+
+
+
+
+
+
+.test {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  background-color: #5386dd;
+  padding-top: 0%;
+
+
+
+}
+
+.position-number {
+  text-align: center;
+  color: rgb(183, 191, 192);
+  font-size: smaller;
+}
+
+.position-number2 {
+  text-align: center;
+  color: rgb(183, 191, 192);
+  font-size: smaller;
+  border-bottom: black;
+}
+
+
+.floor-section {
+  border: 1px solid black;
+  height: 20px;
+  width: 91.8%;
+  align-items: center;
+  /* margin-left: 1.7%; */
+  margin-bottom: 5px;
+  margin-top: 5px;
+
+}
+
+
+/* showing legend */
+.legend {
+  margin-top: -40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.allocated-cell {
+  height: 28px;
+  width: 28px;
+  border: 2.9px solid black;
+  background-color: rgb(241, 199, 12);
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 7px;
+}
+
+
+
+
+.box {
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  position: relative;
+
+}
+
+.gap {
+  /* Adjust the value as needed */
+  margin-left: 42.2px;
+  text-align: center;
+}
+
+
+
+.stored-cell {
+  height: 28.5px;
+  width: 27.8px;
+  border: 2.9px solid black;
+  background-color: rgb(5, 187, 5);
+  border-radius: 5.9px;
+  margin-left: 15px;
+  margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0%;
+
+
+
+
+
+}
+
+.empty-pallet {
+  height: 28px;
+  width: 28px;
+  border: 2.9px solid black;
+  background-color: rgb(188, 79, 238);
+  border-radius: 5px;
+  margin-left: 18px;
+  margin-top: 4px;
+
+
+}
+
+
+.empty-cell {
+  height: 28.5px;
+  width: 27.8px;
+  border: 2.9px solid black;
+  border-radius: 5.9px;
+  margin-left: 13px;
+  margin-right: 15px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding-right: 0px;
+  padding-left: 0%;
+}
+
+.lock-cell {
+  height: 28px;
+  width: 28px;
+
+  border: 2.9px solid black;
+  border-radius: 5px;
+  margin-left: 4px;
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: center;
+  /* padding-bottom: 10%; */
+}
+
+.dead-cell {
+  height: 22px;
+  width: 22px;
+  border: 2.9px solid black;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.outfeed-cmd-cell {
+  height: 28px;
+  width: 28px;
+  border: 2.9px solid black;
+  border-radius: 5px;
+  background-color: rgb(20, 142, 212);
+  margin-left: 10px;
+}
+
+.dead-cell {
+
+  margin-left: 10px;
+}
+
+.equipment {
+  background-image: url("/assets/Equipment-image.jpg");
+  height: 28px;
+  width: 32px;
+  border-radius: 0px;
+  margin-left: 10px;
+}
+
+hr {
+  height: 1px;
+  border-width: 1;
+  color: black;
+  background-color: black;
+
+}
+
+.legend-cells {
+
+  padding-top: -0.1px;
+  padding-left: 7px;
+  vertical-align: middle;
+}
+
+span {
+  color: rgb(219, 18, 18);
+}
+
+.blink {
+
+  animation: blinker 1.40s linear infinite;
+  color: rgb(231, 16, 16);
+
+}
+
+@keyframes blinker {
+  50% {
+    opacity: .4;
+
+  }
+}
+
+
+
+
+/* Floor section */
+.stacker-position {
+  height: 25px;
+  width: 20px;
+}
+
+.Equipment-image {
+  padding: 2px;
+  border: 3px solid black;
+}
+
+.modal-title-style {
+  background-color: #36455a;
+  color: white;
+}
+
+input {
+  width: 300px;
+  ;
+}
+
+.dispatch-button {
+  /* line-height: 1.2rem; */
+  /* margin-top: 0.2rem; */
+  /* margin-bottom: 0.2rem; */
+  margin-left: 0.5rem;
+}
+
+.modal-footer {
+  margin: left 20%;
+}
+
+
+@media (max-width: 576px) {
+
+  .main-heading {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333F50;
+    font-family: ibm-plex-sans-regular;
+
+  }
+
+  .control-label {
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+
+@media (min-width: 1050px) and (max-width: 1920px) {
+
+  .main-heading {
+    padding-top: 0px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    color: #333F50;
+    font-family: ibm-plex-sans-regular;
+
+  }
+
+  .main-heading-floorName {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    /* color: #213654;
+    font-family: ibm-plex-sans-regular; */
+  }
+
+  .floorName {
+    text-align: center;
+  }
+
+
+}
+
+@media (min-width: 720px) and (max-width: 1280px) {
+
+  .main-heading {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333F50;
+    font-family: ibm-plex-sans-regular;
+
+  }
+
+  .main-heading-floorName {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    /* color: #213654;
+    font-family: ibm-plex-sans-regular; */
+  }
+
+  .floorName {
+    text-align: center;
+  }
+
+
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+  .main-heading {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #333F50;
+    font-family: ibm-plex-sans-regular;
+
+  }
+
+  .main-heading-floorName {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 25px;
+    font-weight: bold;
+    /* color: #213654;
+      font-family: ibm-plex-sans-regular; */
+  }
+
+  .floorName {
+    text-align: center;
+  }
+
+}
+
+.live-icon-style {
+  height: 40px;
+}
+
+.fa-lock-style {
+  font-size: 20px;
+  color: red;
+  margin-bottom: 2%;
+  padding-bottom: 10%;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .live-icon-style {
+    height: 30px;
+  }
+
+  .main-heading {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333F50;
+    font-family: ibm-plex-sans-regular;
+
+  }
+
+  .main-heading-floorName {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    /* color: #213654;
+    font-family: ibm-plex-sans-regular; */
+  }
+
+  .floorName {
+    text-align: center;
+  }
+
+
+  /* showing legend */
+  .legend {
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .stored-cell {
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
+    background-color: rgb(5, 187, 5);
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 7px;
+
+
+  }
+
+  .allocated-cell {
+    background-color: rgb(241, 199, 12);
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
+
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 7px;
+  }
+
+  .empty-pallet {
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
+    background-color: rgb(188, 79, 238);
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-top: 7px;
+
+
+  }
+
+  .empty-cell {
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+
+  .lock-cell {
+    height: 20px;
+    width: 22px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 4px;
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+  }
+
+  .dead-cell {
+    height: 25px;
+    width: 25px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 5px;
+  }
+
+  .outfeed-cmd-cell {
+    height: 20px;
+    width: 22px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: rgb(20, 142, 212);
+    margin-left: 10px;
+  }
+
+  .dead-cell {
+
+    margin-left: 10px;
+  }
+
+  .fa-lock-style {
+    font-size: 10px;
+    color: red;
+    margin-bottom: 2%;
+  }
+
+  .equipment {
+    height: 25px;
+    width: 25px;
+    border-radius: 5px;
+    margin-left: 15px;
+  }
+
+  hr {
+    height: 1.5px;
+    border-width: 0;
+    color: black;
+    background-color: black;
+  }
+
+  .legend-cells {
+    padding-left: 7px;
+    vertical-align: middle;
+    font-size: 15px;
+  }
+
+  .equipment-style {
+    height: 25px;
+    width: 25px;
+    margin-bottom: 10px;
+  }
+
+}
+
+@media (min-width: 900px) and (max-width: 1600px) {
+
+  .main-heading {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333F50;
+    font-family: ibm-plex-sans-regular;
+
+
+  }
+
+  .main-heading-floorName {
+    padding-top: 18px;
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    /* color: #213654;
+      font-family: ibm-plex-sans-regular; */
+  }
+
+
+
+  .control-label {
+    font-size: medium;
+    font-weight: bold;
+  }
+}
+
+@media (min-width:768px) and (max-width: 1366px) {
+  .heading-name-area-row {
+    margin-top: 30px;
+  }
+
+}
+
+.equipment-style {
+  height: 30px;
+  width: 32px;
+  margin-bottom: 10px;
+}
+
+
+/* ----------------------------------- */
+ul {
+  -moz-column-count: 12;
+  -webkit-column-count: 12;
+  column-count: 12;
+
+  /* -moz-column-gap: 1.5rem;
+    -webkit-column-gap: 1.5rem;
+    column-gap: 1.5rem;
+    padding-left: 0; */
+  list-style: none;
+}
+
+/* ul .title {font-size: 18px; font-weight: bold; margin: 20px 0 10px;} */
+
+.grid-list {
+  display: grid;
+
+  grid-template-columns: repeat(10, 1fr);
+}
